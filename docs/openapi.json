@@ -1,0 +1,6070 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "VRP Data API",
+    "description": "Restful API for Route Planning System",
+    "version": "v1.1.0b build 08465b33"
+  },
+  "servers": [
+    {
+      "url": "https://api.rmcdispatch.ga",
+      "variables": {
+        "protocol": {
+          "enum": [
+            "https"
+          ],
+          "default": "https"
+        }
+      }
+    }
+  ],
+  "security": [
+    {
+      "UserAuth": []
+    }
+  ],
+  "paths": {
+    "/vrp/api/api-token-auth/": {
+      "post": {
+        "tags": [
+          "api-token-auth"
+        ],
+        "operationId": "api-token-auth_create",
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/carrier-classes/": {
+      "get": {
+        "tags": [
+          "carrier-classes"
+        ],
+        "operationId": "carrier-classes_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "carrier-classes"
+        ],
+        "operationId": "carrier-classes_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "carrier_type",
+                  "dimension",
+                  "uom"
+                ],
+                "type": "object",
+                "properties": {
+                  "carrier_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "weight_cap": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/carrier-classes/{id}/": {
+      "get": {
+        "tags": [
+          "carrier-classes"
+        ],
+        "operationId": "carrier-classes_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "carrier-classes"
+        ],
+        "operationId": "carrier-classes_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "carrier_type",
+                  "dimension",
+                  "uom"
+                ],
+                "type": "object",
+                "properties": {
+                  "carrier_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "weight_cap": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "carrier-classes"
+        ],
+        "operationId": "carrier-classes_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "carrier-classes"
+        ],
+        "operationId": "carrier-classes_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "carrier_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "weight_cap": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/carriers/": {
+      "get": {
+        "tags": [
+          "carriers"
+        ],
+        "operationId": "carriers_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "carrier_class",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "is_occupied",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "carriers"
+        ],
+        "operationId": "carriers_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "carrier_class",
+                  "location",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "carrier_class": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "fuel_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "fuel_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "service_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "service_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "fixed_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "fixed_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "man_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "man_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "is_occupied": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/carriers/{id}/": {
+      "get": {
+        "tags": [
+          "carriers"
+        ],
+        "operationId": "carriers_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "carriers"
+        ],
+        "operationId": "carriers_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "carrier_class",
+                  "location",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "carrier_class": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "fuel_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "fuel_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "service_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "service_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "fixed_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "fixed_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "man_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "man_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "is_occupied": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "carriers"
+        ],
+        "operationId": "carriers_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "carriers"
+        ],
+        "operationId": "carriers_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "carrier_class": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "fuel_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "fuel_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "service_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "service_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "fixed_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "fixed_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "man_cost": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "man_cost_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "is_occupied": {
+                    "type": "boolean",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/coords/": {
+      "get": {
+        "tags": [
+          "coords"
+        ],
+        "operationId": "coords_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "coords"
+        ],
+        "operationId": "coords_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "lat",
+                  "lon"
+                ],
+                "type": "object",
+                "properties": {
+                  "lat": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "lon": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/coords/{id}/": {
+      "get": {
+        "tags": [
+          "coords"
+        ],
+        "operationId": "coords_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "coords"
+        ],
+        "operationId": "coords_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "lat",
+                  "lon"
+                ],
+                "type": "object",
+                "properties": {
+                  "lat": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "lon": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "coords"
+        ],
+        "operationId": "coords_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "coords"
+        ],
+        "operationId": "coords_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "lat": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "lon": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/customers/": {
+      "get": {
+        "tags": [
+          "customers"
+        ],
+        "operationId": "customers_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "customers"
+        ],
+        "operationId": "customers_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "locations": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/customers/{id}/": {
+      "get": {
+        "tags": [
+          "customers"
+        ],
+        "operationId": "customers_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "customers"
+        ],
+        "operationId": "customers_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "locations": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "customers"
+        ],
+        "operationId": "customers_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "customers"
+        ],
+        "operationId": "customers_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "locations": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/dimensions/": {
+      "get": {
+        "tags": [
+          "dimensions"
+        ],
+        "operationId": "dimensions_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "dimensions"
+        ],
+        "operationId": "dimensions_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "height",
+                  "length",
+                  "uom",
+                  "width"
+                ],
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "height": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "length": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/dimensions/{id}/": {
+      "get": {
+        "tags": [
+          "dimensions"
+        ],
+        "operationId": "dimensions_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "dimensions"
+        ],
+        "operationId": "dimensions_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "height",
+                  "length",
+                  "uom",
+                  "width"
+                ],
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "height": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "length": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "dimensions"
+        ],
+        "operationId": "dimensions_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "dimensions"
+        ],
+        "operationId": "dimensions_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "height": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "length": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/inventory-items/": {
+      "get": {
+        "tags": [
+          "inventory-items"
+        ],
+        "operationId": "inventory-items_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "inventory-items"
+        ],
+        "operationId": "inventory-items_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "product",
+                  "uom"
+                ],
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/inventory-items/{id}/": {
+      "get": {
+        "tags": [
+          "inventory-items"
+        ],
+        "operationId": "inventory-items_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "inventory-items"
+        ],
+        "operationId": "inventory-items_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "product",
+                  "uom"
+                ],
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "inventory-items"
+        ],
+        "operationId": "inventory-items_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "inventory-items"
+        ],
+        "operationId": "inventory-items_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/locations/": {
+      "get": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "coord",
+                  "items",
+                  "location_type",
+                  "name",
+                  "time_windows"
+                ],
+                "type": "object",
+                "properties": {
+                  "coord": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "time_windows": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "location_type": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/locations/{id}/": {
+      "get": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "coord",
+                  "items",
+                  "location_type",
+                  "name",
+                  "time_windows"
+                ],
+                "type": "object",
+                "properties": {
+                  "coord": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "time_windows": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "location_type": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "coord": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "time_windows": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "location_type": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/locations/{location_id}/items/": {
+      "get": {
+        "tags": [
+          "locations"
+        ],
+        "operationId": "locations_items_list",
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/map-out-ways-detail/": {
+      "get": {
+        "tags": [
+          "map-out-ways-detail"
+        ],
+        "operationId": "map-out-ways-detail_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "map-out-ways-detail"
+        ],
+        "operationId": "map-out-ways-detail_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "distance_uom",
+                  "output_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "output_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "distance": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "distance_uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-out-ways-detail/{id}/": {
+      "get": {
+        "tags": [
+          "map-out-ways-detail"
+        ],
+        "operationId": "map-out-ways-detail_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "map-out-ways-detail"
+        ],
+        "operationId": "map-out-ways-detail_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "distance_uom",
+                  "output_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "output_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "distance": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "distance_uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "map-out-ways-detail"
+        ],
+        "operationId": "map-out-ways-detail_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "map-out-ways-detail"
+        ],
+        "operationId": "map-out-ways-detail_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "output_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "distance": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "distance_uom": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-out-ways/": {
+      "get": {
+        "tags": [
+          "map-out-ways"
+        ],
+        "operationId": "map-out-ways_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "map-out-ways"
+        ],
+        "operationId": "map-out-ways_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "output_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "output_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-out-ways/{id}/": {
+      "get": {
+        "tags": [
+          "map-out-ways"
+        ],
+        "operationId": "map-out-ways_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "map-out-ways"
+        ],
+        "operationId": "map-out-ways_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "output_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "output_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "map-out-ways"
+        ],
+        "operationId": "map-out-ways_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "map-out-ways"
+        ],
+        "operationId": "map-out-ways_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "output_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-ways-detail/": {
+      "get": {
+        "tags": [
+          "map-ways-detail"
+        ],
+        "operationId": "map-ways-detail_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "map-ways-detail"
+        ],
+        "operationId": "map-ways-detail_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "source_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-ways-detail/{id}/": {
+      "get": {
+        "tags": [
+          "map-ways-detail"
+        ],
+        "operationId": "map-ways-detail_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "map-ways-detail"
+        ],
+        "operationId": "map-ways-detail_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "output_ways",
+                  "source_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "output_ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "map-ways-detail"
+        ],
+        "operationId": "map-ways-detail_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "map-ways-detail"
+        ],
+        "operationId": "map-ways-detail_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "output_ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-ways/": {
+      "get": {
+        "tags": [
+          "map-ways"
+        ],
+        "operationId": "map-ways_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "map-ways"
+        ],
+        "operationId": "map-ways_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "output_ways",
+                  "source_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "output_ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/map-ways/{id}/": {
+      "get": {
+        "tags": [
+          "map-ways"
+        ],
+        "operationId": "map-ways_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "map-ways"
+        ],
+        "operationId": "map-ways_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "output_ways",
+                  "source_location"
+                ],
+                "type": "object",
+                "properties": {
+                  "output_ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "map-ways"
+        ],
+        "operationId": "map-ways_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "map-ways"
+        ],
+        "operationId": "map-ways_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "output_ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/maps-detail/": {
+      "get": {
+        "tags": [
+          "maps-detail"
+        ],
+        "operationId": "maps-detail_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "maps-detail"
+        ],
+        "operationId": "maps-detail_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "ways"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/maps-detail/{id}/": {
+      "get": {
+        "tags": [
+          "maps-detail"
+        ],
+        "operationId": "maps-detail_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "maps-detail"
+        ],
+        "operationId": "maps-detail_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "ways"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "maps-detail"
+        ],
+        "operationId": "maps-detail_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "maps-detail"
+        ],
+        "operationId": "maps-detail_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/maps/": {
+      "get": {
+        "tags": [
+          "maps"
+        ],
+        "operationId": "maps_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "maps"
+        ],
+        "operationId": "maps_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "ways"
+                ],
+                "type": "object",
+                "properties": {
+                  "ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/maps/{id}/": {
+      "get": {
+        "tags": [
+          "maps"
+        ],
+        "operationId": "maps_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "maps"
+        ],
+        "operationId": "maps_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name",
+                  "ways"
+                ],
+                "type": "object",
+                "properties": {
+                  "ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "maps"
+        ],
+        "operationId": "maps_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "maps"
+        ],
+        "operationId": "maps_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ways": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/obtain-auth-token/": {
+      "post": {
+        "tags": [
+          "obtain-auth-token"
+        ],
+        "operationId": "obtain-auth-token_create",
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/order-items/": {
+      "get": {
+        "tags": [
+          "order-items"
+        ],
+        "operationId": "order-items_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "order-items"
+        ],
+        "operationId": "order-items_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "product",
+                  "uom"
+                ],
+                "type": "object",
+                "properties": {
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/order-items/{id}/": {
+      "get": {
+        "tags": [
+          "order-items"
+        ],
+        "operationId": "order-items_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "order-items"
+        ],
+        "operationId": "order-items_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "product",
+                  "uom"
+                ],
+                "type": "object",
+                "properties": {
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "order-items"
+        ],
+        "operationId": "order-items_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "order-items"
+        ],
+        "operationId": "order-items_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "product": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/orders/": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_location",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delivery_location",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delivery_time_windows",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customer",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "delivery_date"
+                ],
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "customer": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "order_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_time_windows": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/orders/{id}/": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "delivery_date"
+                ],
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "customer": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "order_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_time_windows": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "customer": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "order_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_time_windows": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/orders/{order_id}/delivery-locations/": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_delivery-locations_list",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/orders/{order_id}/items/": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "operationId": "orders_items_list",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/products/": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "operationId": "products_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "operationId": "products_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "dimension",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "weight": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom_weight": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/products/{id}/": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "operationId": "products_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "products"
+        ],
+        "operationId": "products_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "dimension",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "weight": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom_weight": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "products"
+        ],
+        "operationId": "products_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "products"
+        ],
+        "operationId": "products_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "weight": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "uom_weight": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/rest-auth/login/": {
+      "post": {
+        "security": [],
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Check the credentials and return the REST Token",
+        "description": "Check the credentials and return the REST Token\nif the credentials are valid and authenticated.\nCalls Django Auth login method to register User ID\nin Django session framework\n\nAccept the following POST parameters: username, password\nReturn the REST Framework Token Object's key.",
+        "operationId": "rest-auth_login_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/rest-auth/logout/": {
+      "get": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Calls Django logout method and delete the Token object",
+        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
+        "operationId": "rest-auth_logout_list",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Calls Django logout method and delete the Token object",
+        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
+        "operationId": "rest-auth_logout_create",
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/rest-auth/password/change/": {
+      "post": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Calls Django Auth SetPasswordForm save method.",
+        "description": "Calls Django Auth SetPasswordForm save method.\n\nAccepts the following POST parameters: new_password1, new_password2\nReturns the success/fail message.",
+        "operationId": "rest-auth_password_change_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "new_password1",
+                  "new_password2",
+                  "old_password"
+                ],
+                "type": "object",
+                "properties": {
+                  "old_password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "new_password1": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "new_password2": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/rest-auth/password/reset/": {
+      "post": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Calls Django Auth PasswordResetForm save method.",
+        "description": "Calls Django Auth PasswordResetForm save method.\n\nAccepts the following POST parameters: email\nReturns the success/fail message.",
+        "operationId": "rest-auth_password_reset_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "email"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/rest-auth/password/reset/confirm/": {
+      "post": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Password reset e-mail link is confirmed, therefore",
+        "description": "Password reset e-mail link is confirmed, therefore\nthis resets the user's password.\n\nAccepts the following POST parameters: token, uid,\nnew_password1, new_password2\nReturns the success/fail message.",
+        "operationId": "rest-auth_password_reset_confirm_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "new_password1",
+                  "new_password2",
+                  "token",
+                  "uid"
+                ],
+                "type": "object",
+                "properties": {
+                  "new_password1": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "new_password2": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "token": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/rest-auth/user/": {
+      "get": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Reads and updates UserModel fields",
+        "description": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.\n\nDefault accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+        "operationId": "rest-auth_user_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Reads and updates UserModel fields",
+        "description": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.\n\nDefault accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+        "operationId": "rest-auth_user_update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "username"
+                ],
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "patch": {
+        "tags": [
+          "rest-auth"
+        ],
+        "summary": "Reads and updates UserModel fields",
+        "description": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.\n\nDefault accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+        "operationId": "rest-auth_user_partial_update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/set-password/{id}/": {
+      "patch": {
+        "tags": [
+          "set-password"
+        ],
+        "operationId": "set-password_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/time-windows/": {
+      "get": {
+        "tags": [
+          "time-windows"
+        ],
+        "operationId": "time-windows_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "time-windows"
+        ],
+        "operationId": "time-windows_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "begin": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "end": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/time-windows/{id}/": {
+      "get": {
+        "tags": [
+          "time-windows"
+        ],
+        "operationId": "time-windows_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "time-windows"
+        ],
+        "operationId": "time-windows_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "begin": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "end": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "time-windows"
+        ],
+        "operationId": "time-windows_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "time-windows"
+        ],
+        "operationId": "time-windows_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "begin": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "end": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/trips/": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source_location",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "delivery_date",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "orders": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "carrier_classes": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "is_round_trip": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "plan_data": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "plan_type": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/trips/{id}/": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "delivery_date",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "orders": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "carrier_classes": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "is_round_trip": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "plan_data": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "plan_type": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "source_location": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "orders": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "carrier_classes": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "is_round_trip": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "plan_data": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "plan_type": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/trips/{trip_id}/carrier-classes/": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_carrier-classes_list",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "carrier_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/trips/{trip_id}/exports-plan-api/{format_param}/": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_exports-plan-api_read",
+        "parameters": [
+          {
+            "name": "format_param",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/trips/{trip_id}/orders/": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "operationId": "trips_orders_list",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delivery_location",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delivery_time_windows",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customer",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/vrp/api/unit-of-measure-categories/": {
+      "get": {
+        "tags": [
+          "unit-of-measure-categories"
+        ],
+        "operationId": "unit-of-measure-categories_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "unit-of-measure-categories"
+        ],
+        "operationId": "unit-of-measure-categories_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/unit-of-measure-categories/{id}/": {
+      "get": {
+        "tags": [
+          "unit-of-measure-categories"
+        ],
+        "operationId": "unit-of-measure-categories_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "unit-of-measure-categories"
+        ],
+        "operationId": "unit-of-measure-categories_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "unit-of-measure-categories"
+        ],
+        "operationId": "unit-of-measure-categories_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "unit-of-measure-categories"
+        ],
+        "operationId": "unit-of-measure-categories_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/unit-of-measures/": {
+      "get": {
+        "tags": [
+          "unit-of-measures"
+        ],
+        "operationId": "unit-of-measures_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "unit-of-measures"
+        ],
+        "operationId": "unit-of-measures_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "category",
+                  "name",
+                  "uom_type"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "rounding": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "factor": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/unit-of-measures/{id}/": {
+      "get": {
+        "tags": [
+          "unit-of-measures"
+        ],
+        "operationId": "unit-of-measures_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "unit-of-measures"
+        ],
+        "operationId": "unit-of-measures_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "category",
+                  "name",
+                  "uom_type"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "rounding": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "factor": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "unit-of-measures"
+        ],
+        "operationId": "unit-of-measures_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "unit-of-measures"
+        ],
+        "operationId": "unit-of-measures_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "uom_type": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "rounding": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "factor": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/users/": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "operationId": "users_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "operationId": "users_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "confirm_password",
+                  "password",
+                  "role",
+                  "username"
+                ],
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "confirm_password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    },
+    "/vrp/api/users/{id}/": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "operationId": "users_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "operationId": "users_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "confirm_password",
+                  "password",
+                  "role",
+                  "username"
+                ],
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "confirm_password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "operationId": "users_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "operationId": "users_partial_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "confirm_password": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "data"
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "UserAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Token",
+        "description": "User account authenication for per resource authorization"
+      }
+    }
+  }
+}

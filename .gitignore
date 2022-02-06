@@ -1,0 +1,5 @@
+env
+*.pyc
+dataservice/.coverage
+dataservice/coverage-report/
+db.sqlite3

@@ -1,0 +1,31 @@
+image: python:3.4
+before_script:
+  - apt-get update -qq && apt-get install -y --force-yes libmysqlclient-dev python3-dev build-essential openssl openssh-client  locales
+  - export LC_ALL="en_US.UTF-8"
+  - export LC_CTYPE="en_US.UTF-8"
+  - dpkg-reconfigure locales
+  - echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+  - locale-gen
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa 
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  - pip install virtualenv
+  - virtualenv -p python3.4 /builds/jumpup/jumpvrp-data-service
+  - cd /builds/jumpup/jumpvrp-data-service
+  - source ./bin/activate
+  - pip install --upgrade pip
+  - pip install coverage
+  - cd /builds/jumpup/jumpvrp-data-service
+  - pip install -r requirements.txt
+stages:
+  - test
+job1:
+  stage: test
+  script:
+    - cd /builds/jumpup/jumpvrp-data-service/dataservice
+    - python manage.py test 
+    - coverage run --source='.' manage.py test
+    - coverage report
+    - fab deploy
+  only:
+    - master

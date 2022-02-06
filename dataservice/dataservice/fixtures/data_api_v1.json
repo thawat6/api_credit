@@ -1,0 +1,1002 @@
+[
+{
+  "model": "data_api.company",
+  "pk": 1,
+  "fields": {
+    "name": "Company1",
+    "max_carrier": 0,
+    "start_valid_date": "2017-02-16",
+    "valid_until": "2018-02-16"
+  }
+},
+{
+  "model": "data_api.company",
+  "pk": 2,
+  "fields": {
+    "name": "Company2",
+    "max_carrier": 5,
+    "start_valid_date": "2017-02-16",
+    "valid_until": "2018-02-16"
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "serviceadmin"
+    ],
+    "company": 1,
+    "role": "service_admin"
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "ordermanager"
+    ],
+    "company": 1,
+    "role": "order_manager"
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "backofficer"
+    ],
+    "company": 1,
+    "role": "back_officer"
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "saleperson"
+    ],
+    "company": 1,
+    "role": "sale_person"
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "tripmanager"
+    ],
+    "company": 1,
+    "role": "trip_manager"
+  }
+},
+{
+  "model": "data_api.unitofmeasurecategory",
+  "pk": 1,
+  "fields": {
+    "name": "Unit"
+  }
+},
+{
+  "model": "data_api.unitofmeasurecategory",
+  "pk": 2,
+  "fields": {
+    "name": "Volume"
+  }
+},
+{
+  "model": "data_api.unitofmeasurecategory",
+  "pk": 3,
+  "fields": {
+    "name": "Weight"
+  }
+},
+{
+  "model": "data_api.unitofmeasurecategory",
+  "pk": 4,
+  "fields": {
+    "name": "Time"
+  }
+},
+{
+  "model": "data_api.unitofmeasurecategory",
+  "pk": 5,
+  "fields": {
+    "name": "Length / Distance"
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 1,
+  "fields": {
+    "name": "pcs",
+    "category": 1,
+    "factor": 1.0,
+    "uom_type": "reference",
+    "rounding": 0
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 2,
+  "fields": {
+    "name": "m",
+    "category": 5,
+    "factor": 1.0,
+    "uom_type": "reference",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 3,
+  "fields": {
+    "name": "cm",
+    "category": 5,
+    "factor": 0.01,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 4,
+  "fields": {
+    "name": "km",
+    "category": 5,
+    "factor": 1000.0,
+    "uom_type": "bigger",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 5,
+  "fields": {
+    "name": "\u0e01\u0e25\u0e48\u0e2d\u0e0724",
+    "category": 1,
+    "factor": 24.0,
+    "uom_type": "bigger",
+    "rounding": 0
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 6,
+  "fields": {
+    "name": "dz",
+    "category": 1,
+    "factor": 12.0,
+    "uom_type": "bigger",
+    "rounding": 0
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 7,
+  "fields": {
+    "name": "mm",
+    "category": 5,
+    "factor": 0.001,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 8,
+  "fields": {
+    "name": "kg",
+    "category": 3,
+    "factor": 1.0,
+    "uom_type": "reference",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 9,
+  "fields": {
+    "name": "t",
+    "category": 3,
+    "factor": 1000.0,
+    "uom_type": "bigger",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 10,
+  "fields": {
+    "name": "in",
+    "category": 5,
+    "factor": 0.0254,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 11,
+  "fields": {
+    "name": "ft",
+    "category": 5,
+    "factor": 0.3048,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 12,
+  "fields": {
+    "name": "yd",
+    "category": 5,
+    "factor": 0.9144,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 13,
+  "fields": {
+    "name": "mi",
+    "category": 5,
+    "factor": 1609.344,
+    "uom_type": "bigger",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 14,
+  "fields": {
+    "name": "lb",
+    "category": 3,
+    "factor": 0.45359237,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 15,
+  "fields": {
+    "name": "oz",
+    "category": 3,
+    "factor": 0.028349523125,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.unitofmeasure",
+  "pk": 16,
+  "fields": {
+    "name": "g",
+    "category": 3,
+    "factor": 0.001,
+    "uom_type": "smaller",
+    "rounding": 2
+  }
+},
+{
+  "model": "data_api.dimension",
+  "pk": 1,
+  "fields": {
+    "width": 2.36,
+    "height": 2.45,
+    "length": 7.2,
+    "uom": 2,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.648Z",
+    "updated_at": "2016-12-01T10:12:42.723Z"
+  }
+},
+{
+  "model": "data_api.dimension",
+  "pk": 2,
+  "fields": {
+    "width": 1.2,
+    "height": 1.8,
+    "length": 2.2,
+    "uom": 2,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.648Z",
+    "updated_at": "2016-12-01T10:12:42.723Z"
+  }
+},
+{
+  "model": "data_api.dimension",
+  "pk": 3,
+  "fields": {
+    "width": 2.36,
+    "height": 2.45,
+    "length": 7.2,
+    "uom": 2,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.648Z",
+    "updated_at": "2016-12-01T10:12:42.723Z"
+  }
+},
+{
+  "model": "data_api.dimension",
+  "pk": 4,
+  "fields": {
+    "width": 2.32,
+    "height": 2.4,
+    "length": 12.0,
+    "uom": 2,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.648Z",
+    "updated_at": "2016-12-01T10:12:42.723Z"
+  }
+},
+{
+  "model": "data_api.dimension",
+  "pk": 5,
+  "fields": {
+    "width": 0.2,
+    "height": 0.14,
+    "length": 0.27,
+    "uom": 2,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.648Z",
+    "updated_at": "2016-12-01T10:12:42.723Z"
+  }
+},
+{
+  "model": "data_api.dimension",
+  "pk": 6,
+  "fields": {
+    "width": 18.0,
+    "height": 21.0,
+    "length": 24.0,
+    "uom": 3,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.648Z",
+    "updated_at": "2016-12-01T10:12:42.723Z"
+  }
+},
+{
+  "model": "data_api.product",
+  "pk": 1,
+  "fields": {
+    "name": "\u0e2b\u0e19\u0e2d\u0e07\u0e42\u0e1e UHT \u0e08\u0e37\u0e14 200 ml",
+    "weight": 7.5,
+    "uom_weight": 1,
+    "uom": 8,
+    "dimension": 5,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:43.561Z",
+    "updated_at": "2016-12-01T10:12:43.646Z"
+  }
+},
+{
+  "model": "data_api.product",
+  "pk": 2,
+  "fields": {
+    "name": "\u0e19\u0e49\u0e33\u0e14\u0e37\u0e48\u0e21 \u0e04\u0e23\u0e34\u0e2a\u0e15\u0e31\u0e25 500 ml \u0e41\u0e1e\u0e47\u0e04 12",
+    "weight": 6.1,
+    "uom_weight": 1,
+    "uom": 8,
+    "dimension": 6,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:43.561Z",
+    "updated_at": "2016-12-01T10:12:43.646Z"
+  }
+},
+{
+  "model": "data_api.coord",
+  "pk": 1,
+  "fields": {
+    "lat": "16.430270",
+    "lon": "102.822690",
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.296Z",
+    "updated_at": "2016-12-01T10:12:42.424Z"
+  }
+},
+{
+  "model": "data_api.coord",
+  "pk": 2,
+  "fields": {
+    "lat": "16.426300",
+    "lon": "102.830300",
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.296Z",
+    "updated_at": "2016-12-01T10:12:42.424Z"
+  }
+},
+{
+  "model": "data_api.coord",
+  "pk": 3,
+  "fields": {
+    "lat": "16.431540",
+    "lon": "102.836880",
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.296Z",
+    "updated_at": "2016-12-01T10:12:42.424Z"
+  }
+},
+{
+  "model": "data_api.timewindow",
+  "pk": 1,
+  "fields": {
+    "begin": "08:00:00",
+    "end": "15:00:00",
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:43.730Z",
+    "updated_at": "2016-12-01T10:12:43.811Z"
+  }
+},
+{
+  "model": "data_api.timewindow",
+  "pk": 2,
+  "fields": {
+    "begin": "15:00:00",
+    "end": "18:00:00",
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:43.730Z",
+    "updated_at": "2016-12-01T10:12:43.811Z"
+  }
+},
+{
+  "model": "data_api.orderitem",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "quantity": 4.0,
+    "uom": 6,
+    "sequence": 0,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:43.395Z",
+    "updated_at": "2016-12-01T10:12:43.478Z"
+  }
+},
+{
+  "model": "data_api.orderitem",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "quantity": 5.0,
+    "uom": 6,
+    "sequence": 0,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:43.395Z",
+    "updated_at": "2016-12-01T10:12:43.478Z"
+  }
+},
+{
+  "model": "data_api.inventoryitem",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "quantity": 100.0,
+    "uom": 6,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.802Z",
+    "updated_at": "2016-12-01T10:12:42.885Z"
+  }
+},
+{
+  "model": "data_api.inventoryitem",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "quantity": 200.0,
+    "uom": 6,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.802Z",
+    "updated_at": "2016-12-01T10:12:42.885Z"
+  }
+},
+{
+  "model": "data_api.location",
+  "pk": 1,
+  "fields": {
+    "name": "\u0e04\u0e25\u0e31\u0e07\u0e2a\u0e34\u0e19\u0e04\u0e49\u0e32 Jump",
+    "coord": 1,
+    "location_type": "warehouse",
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:42.977Z",
+    "updated_at": "2017-01-31T05:51:44.452Z",
+    "time_windows": [],
+    "items": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "data_api.location",
+  "pk": 2,
+  "fields": {
+    "name": "\u0e15\u0e25\u0e32\u0e14\u0e15\u0e2d\u0e07\u0e41\u0e1b\u0e14",
+    "coord": 2,
+    "location_type": "customer",
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.977Z",
+    "updated_at": "2016-12-01T10:12:43.062Z",
+    "time_windows": [
+      1
+    ],
+    "items": []
+  }
+},
+{
+  "model": "data_api.location",
+  "pk": 3,
+  "fields": {
+    "name": "\u0e15\u0e25\u0e32\u0e14\u0e23\u0e48\u0e27\u0e21\u0e08\u0e34\u0e15\u0e23",
+    "coord": 3,
+    "location_type": "customer",
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:42.977Z",
+    "updated_at": "2017-01-31T05:51:38.142Z",
+    "time_windows": [
+      2
+    ],
+    "items": [
+      1
+    ]
+  }
+},
+{
+  "model": "data_api.carrierclass",
+  "pk": 1,
+  "fields": {
+    "carrier_type": "6w",
+    "dimension": 1,
+    "weight_cap": 7.0,
+    "uom": 9,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.142Z",
+    "updated_at": "2016-12-01T10:12:42.220Z"
+  }
+},
+{
+  "model": "data_api.carrierclass",
+  "pk": 2,
+  "fields": {
+    "carrier_type": "pickup",
+    "dimension": 2,
+    "weight_cap": 1.5,
+    "uom": 9,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.142Z",
+    "updated_at": "2016-12-01T10:12:42.220Z"
+  }
+},
+{
+  "model": "data_api.carrierclass",
+  "pk": 3,
+  "fields": {
+    "carrier_type": "10w",
+    "dimension": 3,
+    "weight_cap": 15.0,
+    "uom": 9,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.142Z",
+    "updated_at": "2016-12-01T10:12:42.220Z"
+  }
+},
+{
+  "model": "data_api.carrierclass",
+  "pk": 4,
+  "fields": {
+    "carrier_type": "18w",
+    "dimension": 4,
+    "weight_cap": 30.0,
+    "uom": 9,
+    "created_user": null,
+    "updated_user": null,
+    "created_at": "2016-12-01T10:12:42.142Z",
+    "updated_at": "2016-12-01T10:12:42.220Z"
+  }
+},
+{
+  "model": "data_api.carrier",
+  "pk": 1,
+  "fields": {
+    "name": "\u0e1b\u0e2d 9876 \u0e02\u0e2d\u0e19\u0e41\u0e01\u0e48\u0e19",
+    "carrier_class": 2,
+    "fuel_cost": "0.50",
+    "fuel_cost_type": "distance",
+    "service_cost": "0.15",
+    "service_cost_type": "year",
+    "man_cost": "14500.00",
+    "man_cost_type": "month",
+    "fixed_cost": "10000.00",
+    "fixed_cost_type": "trip",
+    "is_occupied": false,
+    "location": 1,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:41.971Z",
+    "updated_at": "2017-01-31T05:49:52.377Z"
+  }
+},
+{
+  "model": "data_api.carrier",
+  "pk": 2,
+  "fields": {
+    "name": "\u0e2b\u0e25 1234 \u0e02\u0e2d\u0e19\u0e41\u0e01\u0e48\u0e19",
+    "carrier_class": 1,
+    "fuel_cost": "2.00",
+    "fuel_cost_type": "distance",
+    "service_cost": "0.50",
+    "service_cost_type": "year",
+    "man_cost": "16500.00",
+    "man_cost_type": "month",
+    "fixed_cost": "15000.00",
+    "fixed_cost_type": "trip",
+    "is_occupied": false,
+    "location": 1,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:41.971Z",
+    "updated_at": "2017-01-31T05:49:35.152Z"
+  }
+},
+{
+  "model": "data_api.carrier",
+  "pk": 3,
+  "fields": {
+    "name": "\u0e2a\u0e25 5678 \u0e02\u0e2d\u0e19\u0e41\u0e01\u0e48\u0e19",
+    "carrier_class": 3,
+    "fuel_cost": "3.50",
+    "fuel_cost_type": "distance",
+    "service_cost": "1.00",
+    "service_cost_type": "year",
+    "man_cost": "15000.00",
+    "man_cost_type": "month",
+    "fixed_cost": "20000.00",
+    "fixed_cost_type": "trip",
+    "is_occupied": false,
+    "location": 1,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:41.971Z",
+    "updated_at": "2017-01-31T05:49:08.870Z"
+  }
+},
+{
+  "model": "data_api.customer",
+  "pk": 1,
+  "fields": {
+    "name": "\u0e40\u0e08\u0e4a\u0e41\u0e14\u0e07",
+    "address": "\u0e15\u0e25\u0e32\u0e14\u0e23\u0e48\u0e27\u0e21\u0e08\u0e34\u0e15\u0e23 \u0e16.\u0e23\u0e48\u0e27\u0e21\u0e08\u0e34\u0e15\u0e23 \u0e15.\u0e43\u0e19\u0e40\u0e21\u0e37\u0e2d\u0e07 \u0e2d.\u0e40\u0e21\u0e37\u0e2d\u0e07 \u0e08.\u0e02\u0e2d\u0e19\u0e41\u0e01\u0e48\u0e19 40000",
+    "phone": "043-111111",
+    "mobile": "090-2222222",
+    "priority": 0,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:42.497Z",
+    "updated_at": "2017-01-31T05:50:35.715Z",
+    "locations": [
+      3
+    ]
+  }
+},
+{
+  "model": "data_api.customer",
+  "pk": 2,
+  "fields": {
+    "name": "\u0e40\u0e2e\u0e35\u0e22\u0e40\u0e15\u0e4b\u0e32",
+    "address": "\u0e15\u0e25\u0e32\u0e14\u0e15\u0e2d\u0e07\u0e41\u0e1b\u0e14 \u0e16.\u0e23\u0e37\u0e48\u0e19\u0e23\u0e21\u0e22\u0e4c \u0e15.\u0e43\u0e19\u0e40\u0e21\u0e37\u0e2d\u0e07 \u0e2d.\u0e40\u0e21\u0e37\u0e2d\u0e07 \u0e08.\u0e02\u0e2d\u0e19\u0e41\u0e01\u0e48\u0e19 40000",
+    "phone": "043-888888",
+    "mobile": "081-8888888",
+    "priority": 1,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:42.497Z",
+    "updated_at": "2017-01-31T05:50:29.560Z",
+    "locations": [
+      2
+    ]
+  }
+},
+{
+  "model": "data_api.order",
+  "pk": 1,
+  "fields": {
+    "sequence": 0,
+    "customer": 1,
+    "order_type": "normal",
+    "delivery_date": "2016-12-01",
+    "delivery_location": 3,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:43.224Z",
+    "updated_at": "2017-02-01T16:38:34.288Z",
+    "delivery_time_windows": [
+      2
+    ],
+    "items": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "data_api.order",
+  "pk": 2,
+  "fields": {
+    "sequence": 1,
+    "customer": 2,
+    "order_type": "normal",
+    "delivery_date": "2016-12-01",
+    "delivery_location": 2,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-01T10:12:43.224Z",
+    "updated_at": "2017-01-31T05:55:13.731Z",
+    "delivery_time_windows": [
+      1
+    ],
+    "items": [
+      2
+    ]
+  }
+},
+{
+  "model": "data_api.mapoutway",
+  "pk": 1,
+  "fields": {
+    "output_location": 2,
+    "distance": 1.9,
+    "distance_uom": 4,
+    "duration": "00:07:00",
+    "conversion_factor": 1.0,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-26T10:47:25.761Z",
+    "updated_at": "2016-12-26T10:47:25.761Z"
+  }
+},
+{
+  "model": "data_api.mapoutway",
+  "pk": 2,
+  "fields": {
+    "output_location": 3,
+    "distance": 2.0,
+    "distance_uom": 4,
+    "duration": "00:06:00",
+    "conversion_factor": 1.1,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-26T10:48:53.727Z",
+    "updated_at": "2017-01-31T05:52:02.048Z"
+  }
+},
+{
+  "model": "data_api.mapoutway",
+  "pk": 3,
+  "fields": {
+    "output_location": 1,
+    "distance": 2.9,
+    "distance_uom": 4,
+    "duration": "00:08:00",
+    "conversion_factor": 1.0,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-27T03:04:04.528Z",
+    "updated_at": "2016-12-27T03:04:04.528Z"
+  }
+},
+{
+  "model": "data_api.mapoutway",
+  "pk": 4,
+  "fields": {
+    "output_location": 3,
+    "distance": 1.4,
+    "distance_uom": 4,
+    "duration": "00:05:00",
+    "conversion_factor": 1.2,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-27T03:05:24.605Z",
+    "updated_at": "2017-01-31T05:52:15.490Z"
+  }
+},
+{
+  "model": "data_api.mapoutway",
+  "pk": 5,
+  "fields": {
+    "output_location": 1,
+    "distance": 3.7,
+    "distance_uom": 4,
+    "duration": "00:09:00",
+    "conversion_factor": 1.0,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-27T03:08:40.532Z",
+    "updated_at": "2016-12-27T03:08:40.532Z"
+  }
+},
+{
+  "model": "data_api.mapoutway",
+  "pk": 6,
+  "fields": {
+    "output_location": 2,
+    "distance": 1.9,
+    "distance_uom": 4,
+    "duration": "00:07:00",
+    "conversion_factor": 2.0,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-27T03:09:43.189Z",
+    "updated_at": "2017-01-31T05:52:28.861Z"
+  }
+},
+{
+  "model": "data_api.mapway",
+  "pk": 1,
+  "fields": {
+    "source_location": 1,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-26T10:49:03.785Z",
+    "updated_at": "2016-12-26T10:49:03.785Z",
+    "output_ways": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "data_api.mapway",
+  "pk": 2,
+  "fields": {
+    "source_location": 2,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-27T03:05:34.040Z",
+    "updated_at": "2016-12-27T03:05:34.040Z",
+    "output_ways": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "data_api.mapway",
+  "pk": 3,
+  "fields": {
+    "source_location": 3,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-27T03:09:47.390Z",
+    "updated_at": "2016-12-27T03:09:47.390Z",
+    "output_ways": [
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "data_api.map",
+  "pk": 1,
+  "fields": {
+    "name": "Map Zone 1",
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-26T10:49:13.306Z",
+    "updated_at": "2016-12-28T04:17:00.371Z",
+    "ways": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "data_api.trip",
+  "pk": 1,
+  "fields": {
+    "name": "001-Delivery",
+    "delivery_date": "2016-12-05",
+    "source_location": 1,
+    "is_round_trip": true,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-05T07:46:37.700Z",
+    "updated_at": "2017-02-18T14:59:37.043Z",
+    "orders": [
+      1,
+      2
+    ],
+    "carrier_classes": []
+  }
+},
+{
+  "model": "data_api.trip",
+  "pk": 2,
+  "fields": {
+    "name": "002-Delivery",
+    "delivery_date": "2016-12-05",
+    "source_location": 1,
+    "is_round_trip": true,
+    "created_user": null,
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2016-12-05T07:51:40.704Z",
+    "updated_at": "2017-02-20T23:57:28.995Z",
+    "orders": [
+      1,
+      2
+    ],
+    "carrier_classes": []
+  }
+}
+]

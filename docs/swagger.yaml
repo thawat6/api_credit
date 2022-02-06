@@ -1,0 +1,3939 @@
+swagger: '2.0'
+info:
+  title: VRP Data API
+  version: ''
+paths:
+  /vrp/api/api-token-auth/:
+    post:
+      operationId: api-token-auth_create
+      responses:
+        '201':
+          description: ''
+      parameters: []
+      tags:
+        - api-token-auth
+  /vrp/api/carrier-classes/:
+    get:
+      operationId: carrier-classes_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - carrier-classes
+    post:
+      operationId: carrier-classes_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              carrier_type:
+                description: ''
+                type: string
+              dimension:
+                description: ''
+                type: string
+              weight_cap:
+                description: ''
+                type: number
+              uom:
+                description: ''
+                type: string
+            required:
+              - carrier_type
+              - dimension
+              - uom
+      consumes:
+        - application/json
+      tags:
+        - carrier-classes
+  '/vrp/api/carrier-classes/{id}/':
+    get:
+      operationId: carrier-classes_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - carrier-classes
+    put:
+      operationId: carrier-classes_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              carrier_type:
+                description: ''
+                type: string
+              dimension:
+                description: ''
+                type: string
+              weight_cap:
+                description: ''
+                type: number
+              uom:
+                description: ''
+                type: string
+            required:
+              - carrier_type
+              - dimension
+              - uom
+      consumes:
+        - application/json
+      tags:
+        - carrier-classes
+    patch:
+      operationId: carrier-classes_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              carrier_type:
+                description: ''
+                type: string
+              dimension:
+                description: ''
+                type: string
+              weight_cap:
+                description: ''
+                type: number
+              uom:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - carrier-classes
+    delete:
+      operationId: carrier-classes_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - carrier-classes
+  /vrp/api/carriers/:
+    get:
+      operationId: carriers_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: carrier_class
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: id
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: is_occupied
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: location
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - carriers
+    post:
+      operationId: carriers_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              carrier_class:
+                description: ''
+                type: string
+              fuel_cost:
+                description: ''
+                type: number
+              fuel_cost_type:
+                description: ''
+                type: string
+              service_cost:
+                description: ''
+                type: number
+              service_cost_type:
+                description: ''
+                type: string
+              fixed_cost:
+                description: ''
+                type: number
+              fixed_cost_type:
+                description: ''
+                type: string
+              man_cost:
+                description: ''
+                type: number
+              man_cost_type:
+                description: ''
+                type: string
+              location:
+                description: ''
+                type: string
+              is_occupied:
+                description: ''
+                type: boolean
+            required:
+              - name
+              - carrier_class
+              - location
+      consumes:
+        - application/json
+      tags:
+        - carriers
+  '/vrp/api/carriers/{id}/':
+    get:
+      operationId: carriers_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - carriers
+    put:
+      operationId: carriers_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              carrier_class:
+                description: ''
+                type: string
+              fuel_cost:
+                description: ''
+                type: number
+              fuel_cost_type:
+                description: ''
+                type: string
+              service_cost:
+                description: ''
+                type: number
+              service_cost_type:
+                description: ''
+                type: string
+              fixed_cost:
+                description: ''
+                type: number
+              fixed_cost_type:
+                description: ''
+                type: string
+              man_cost:
+                description: ''
+                type: number
+              man_cost_type:
+                description: ''
+                type: string
+              location:
+                description: ''
+                type: string
+              is_occupied:
+                description: ''
+                type: boolean
+            required:
+              - name
+              - carrier_class
+              - location
+      consumes:
+        - application/json
+      tags:
+        - carriers
+    patch:
+      operationId: carriers_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              carrier_class:
+                description: ''
+                type: string
+              fuel_cost:
+                description: ''
+                type: number
+              fuel_cost_type:
+                description: ''
+                type: string
+              service_cost:
+                description: ''
+                type: number
+              service_cost_type:
+                description: ''
+                type: string
+              fixed_cost:
+                description: ''
+                type: number
+              fixed_cost_type:
+                description: ''
+                type: string
+              man_cost:
+                description: ''
+                type: number
+              man_cost_type:
+                description: ''
+                type: string
+              location:
+                description: ''
+                type: string
+              is_occupied:
+                description: ''
+                type: boolean
+      consumes:
+        - application/json
+      tags:
+        - carriers
+    delete:
+      operationId: carriers_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - carriers
+  /vrp/api/coords/:
+    get:
+      operationId: coords_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - coords
+    post:
+      operationId: coords_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              lat:
+                description: ''
+                type: number
+              lon:
+                description: ''
+                type: number
+            required:
+              - lat
+              - lon
+      consumes:
+        - application/json
+      tags:
+        - coords
+  '/vrp/api/coords/{id}/':
+    get:
+      operationId: coords_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - coords
+    put:
+      operationId: coords_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              lat:
+                description: ''
+                type: number
+              lon:
+                description: ''
+                type: number
+            required:
+              - lat
+              - lon
+      consumes:
+        - application/json
+      tags:
+        - coords
+    patch:
+      operationId: coords_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              lat:
+                description: ''
+                type: number
+              lon:
+                description: ''
+                type: number
+      consumes:
+        - application/json
+      tags:
+        - coords
+    delete:
+      operationId: coords_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - coords
+  /vrp/api/customers/:
+    get:
+      operationId: customers_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - customers
+    post:
+      operationId: customers_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              address:
+                description: ''
+                type: string
+              phone:
+                description: ''
+                type: string
+              mobile:
+                description: ''
+                type: string
+              priority:
+                description: ''
+                type: integer
+              locations:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+      consumes:
+        - application/json
+      tags:
+        - customers
+  '/vrp/api/customers/{id}/':
+    get:
+      operationId: customers_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - customers
+    put:
+      operationId: customers_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              address:
+                description: ''
+                type: string
+              phone:
+                description: ''
+                type: string
+              mobile:
+                description: ''
+                type: string
+              priority:
+                description: ''
+                type: integer
+              locations:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+      consumes:
+        - application/json
+      tags:
+        - customers
+    patch:
+      operationId: customers_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              address:
+                description: ''
+                type: string
+              phone:
+                description: ''
+                type: string
+              mobile:
+                description: ''
+                type: string
+              priority:
+                description: ''
+                type: integer
+              locations:
+                description: ''
+                type: array
+                items:
+                  type: string
+      consumes:
+        - application/json
+      tags:
+        - customers
+    delete:
+      operationId: customers_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - customers
+  /vrp/api/dimensions/:
+    get:
+      operationId: dimensions_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - dimensions
+    post:
+      operationId: dimensions_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              width:
+                description: ''
+                type: number
+              height:
+                description: ''
+                type: number
+              length:
+                description: ''
+                type: number
+              uom:
+                description: ''
+                type: string
+            required:
+              - width
+              - height
+              - length
+              - uom
+      consumes:
+        - application/json
+      tags:
+        - dimensions
+  '/vrp/api/dimensions/{id}/':
+    get:
+      operationId: dimensions_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - dimensions
+    put:
+      operationId: dimensions_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              width:
+                description: ''
+                type: number
+              height:
+                description: ''
+                type: number
+              length:
+                description: ''
+                type: number
+              uom:
+                description: ''
+                type: string
+            required:
+              - width
+              - height
+              - length
+              - uom
+      consumes:
+        - application/json
+      tags:
+        - dimensions
+    patch:
+      operationId: dimensions_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              width:
+                description: ''
+                type: number
+              height:
+                description: ''
+                type: number
+              length:
+                description: ''
+                type: number
+              uom:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - dimensions
+    delete:
+      operationId: dimensions_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - dimensions
+  /vrp/api/inventory-items/:
+    get:
+      operationId: inventory-items_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - inventory-items
+    post:
+      operationId: inventory-items_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              quantity:
+                description: ''
+                type: number
+              product:
+                description: ''
+                type: string
+              uom:
+                description: ''
+                type: string
+            required:
+              - product
+              - uom
+      consumes:
+        - application/json
+      tags:
+        - inventory-items
+  '/vrp/api/inventory-items/{id}/':
+    get:
+      operationId: inventory-items_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - inventory-items
+    put:
+      operationId: inventory-items_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              quantity:
+                description: ''
+                type: number
+              product:
+                description: ''
+                type: string
+              uom:
+                description: ''
+                type: string
+            required:
+              - product
+              - uom
+      consumes:
+        - application/json
+      tags:
+        - inventory-items
+    patch:
+      operationId: inventory-items_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              quantity:
+                description: ''
+                type: number
+              product:
+                description: ''
+                type: string
+              uom:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - inventory-items
+    delete:
+      operationId: inventory-items_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - inventory-items
+  /vrp/api/locations/:
+    get:
+      operationId: locations_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: location_type
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - locations
+    post:
+      operationId: locations_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              coord:
+                description: ''
+                type: string
+              time_windows:
+                description: ''
+                type: array
+                items:
+                  type: string
+              items:
+                description: ''
+                type: array
+                items:
+                  type: string
+              name:
+                description: ''
+                type: string
+              location_type:
+                description: ''
+                type: string
+            required:
+              - coord
+              - time_windows
+              - items
+              - name
+              - location_type
+      consumes:
+        - application/json
+      tags:
+        - locations
+  '/vrp/api/locations/{id}/':
+    get:
+      operationId: locations_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - locations
+    put:
+      operationId: locations_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              coord:
+                description: ''
+                type: string
+              time_windows:
+                description: ''
+                type: array
+                items:
+                  type: string
+              items:
+                description: ''
+                type: array
+                items:
+                  type: string
+              name:
+                description: ''
+                type: string
+              location_type:
+                description: ''
+                type: string
+            required:
+              - coord
+              - time_windows
+              - items
+              - name
+              - location_type
+      consumes:
+        - application/json
+      tags:
+        - locations
+    patch:
+      operationId: locations_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              coord:
+                description: ''
+                type: string
+              time_windows:
+                description: ''
+                type: array
+                items:
+                  type: string
+              items:
+                description: ''
+                type: array
+                items:
+                  type: string
+              name:
+                description: ''
+                type: string
+              location_type:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - locations
+    delete:
+      operationId: locations_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - locations
+  '/vrp/api/locations/{location_id}/items/':
+    get:
+      operationId: locations_items_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: location_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - locations
+  /vrp/api/map-out-ways-detail/:
+    get:
+      operationId: map-out-ways-detail_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - map-out-ways-detail
+    post:
+      operationId: map-out-ways-detail_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_location:
+                description: ''
+                type: string
+              duration:
+                description: ''
+                type: string
+              distance:
+                description: ''
+                type: number
+              distance_uom:
+                description: ''
+                type: string
+            required:
+              - output_location
+              - distance_uom
+      consumes:
+        - application/json
+      tags:
+        - map-out-ways-detail
+  '/vrp/api/map-out-ways-detail/{id}/':
+    get:
+      operationId: map-out-ways-detail_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-out-ways-detail
+    put:
+      operationId: map-out-ways-detail_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_location:
+                description: ''
+                type: string
+              duration:
+                description: ''
+                type: string
+              distance:
+                description: ''
+                type: number
+              distance_uom:
+                description: ''
+                type: string
+            required:
+              - output_location
+              - distance_uom
+      consumes:
+        - application/json
+      tags:
+        - map-out-ways-detail
+    patch:
+      operationId: map-out-ways-detail_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_location:
+                description: ''
+                type: string
+              duration:
+                description: ''
+                type: string
+              distance:
+                description: ''
+                type: number
+              distance_uom:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - map-out-ways-detail
+    delete:
+      operationId: map-out-ways-detail_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-out-ways-detail
+  /vrp/api/map-out-ways/:
+    get:
+      operationId: map-out-ways_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - map-out-ways
+    post:
+      operationId: map-out-ways_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_location:
+                description: ''
+                type: string
+              duration:
+                description: ''
+                type: string
+            required:
+              - output_location
+      consumes:
+        - application/json
+      tags:
+        - map-out-ways
+  '/vrp/api/map-out-ways/{id}/':
+    get:
+      operationId: map-out-ways_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-out-ways
+    put:
+      operationId: map-out-ways_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_location:
+                description: ''
+                type: string
+              duration:
+                description: ''
+                type: string
+            required:
+              - output_location
+      consumes:
+        - application/json
+      tags:
+        - map-out-ways
+    patch:
+      operationId: map-out-ways_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_location:
+                description: ''
+                type: string
+              duration:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - map-out-ways
+    delete:
+      operationId: map-out-ways_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-out-ways
+  /vrp/api/map-ways-detail/:
+    get:
+      operationId: map-ways-detail_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - map-ways-detail
+    post:
+      operationId: map-ways-detail_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+            required:
+              - source_location
+      consumes:
+        - application/json
+      tags:
+        - map-ways-detail
+  '/vrp/api/map-ways-detail/{id}/':
+    get:
+      operationId: map-ways-detail_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-ways-detail
+    put:
+      operationId: map-ways-detail_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              output_ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - source_location
+              - output_ways
+      consumes:
+        - application/json
+      tags:
+        - map-ways-detail
+    patch:
+      operationId: map-ways-detail_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              output_ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+      consumes:
+        - application/json
+      tags:
+        - map-ways-detail
+    delete:
+      operationId: map-ways-detail_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-ways-detail
+  /vrp/api/map-ways/:
+    get:
+      operationId: map-ways_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - map-ways
+    post:
+      operationId: map-ways_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+              source_location:
+                description: ''
+                type: string
+            required:
+              - output_ways
+              - source_location
+      consumes:
+        - application/json
+      tags:
+        - map-ways
+  '/vrp/api/map-ways/{id}/':
+    get:
+      operationId: map-ways_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-ways
+    put:
+      operationId: map-ways_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+              source_location:
+                description: ''
+                type: string
+            required:
+              - output_ways
+              - source_location
+      consumes:
+        - application/json
+      tags:
+        - map-ways
+    patch:
+      operationId: map-ways_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              output_ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+              source_location:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - map-ways
+    delete:
+      operationId: map-ways_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - map-ways
+  /vrp/api/maps-detail/:
+    get:
+      operationId: maps-detail_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - maps-detail
+    post:
+      operationId: maps-detail_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+              - ways
+      consumes:
+        - application/json
+      tags:
+        - maps-detail
+  '/vrp/api/maps-detail/{id}/':
+    get:
+      operationId: maps-detail_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - maps-detail
+    put:
+      operationId: maps-detail_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+              - ways
+      consumes:
+        - application/json
+      tags:
+        - maps-detail
+    patch:
+      operationId: maps-detail_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+      consumes:
+        - application/json
+      tags:
+        - maps-detail
+    delete:
+      operationId: maps-detail_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - maps-detail
+  /vrp/api/maps/:
+    get:
+      operationId: maps_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - maps
+    post:
+      operationId: maps_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+              name:
+                description: ''
+                type: string
+            required:
+              - ways
+              - name
+      consumes:
+        - application/json
+      tags:
+        - maps
+  '/vrp/api/maps/{id}/':
+    get:
+      operationId: maps_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - maps
+    put:
+      operationId: maps_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+              name:
+                description: ''
+                type: string
+            required:
+              - ways
+              - name
+      consumes:
+        - application/json
+      tags:
+        - maps
+    patch:
+      operationId: maps_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              ways:
+                description: ''
+                type: array
+                items:
+                  type: string
+              name:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - maps
+    delete:
+      operationId: maps_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - maps
+  /vrp/api/obtain-auth-token/:
+    post:
+      operationId: obtain-auth-token_create
+      responses:
+        '201':
+          description: ''
+      parameters: []
+      tags:
+        - obtain-auth-token
+  /vrp/api/order-items/:
+    get:
+      operationId: order-items_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - order-items
+    post:
+      operationId: order-items_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              uom:
+                description: ''
+                type: string
+              quantity:
+                description: ''
+                type: number
+              sequence:
+                description: ''
+                type: integer
+              product:
+                description: ''
+                type: string
+            required:
+              - uom
+              - product
+      consumes:
+        - application/json
+      tags:
+        - order-items
+  '/vrp/api/order-items/{id}/':
+    get:
+      operationId: order-items_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - order-items
+    put:
+      operationId: order-items_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              uom:
+                description: ''
+                type: string
+              quantity:
+                description: ''
+                type: number
+              sequence:
+                description: ''
+                type: integer
+              product:
+                description: ''
+                type: string
+            required:
+              - uom
+              - product
+      consumes:
+        - application/json
+      tags:
+        - order-items
+    patch:
+      operationId: order-items_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              uom:
+                description: ''
+                type: string
+              quantity:
+                description: ''
+                type: number
+              sequence:
+                description: ''
+                type: integer
+              product:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - order-items
+    delete:
+      operationId: order-items_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - order-items
+  /vrp/api/orders/:
+    get:
+      operationId: orders_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: status
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: source_location
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: delivery_location
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: delivery_time_windows
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: order_type
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: customer
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - orders
+    post:
+      operationId: orders_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              delivery_location:
+                description: ''
+                type: string
+              customer:
+                description: ''
+                type: string
+              sequence:
+                description: ''
+                type: integer
+              status:
+                description: ''
+                type: string
+              order_type:
+                description: ''
+                type: string
+              delivery_date:
+                description: ''
+                type: string
+              delivery_time_windows:
+                description: ''
+                type: array
+                items:
+                  type: string
+              items:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - delivery_date
+      consumes:
+        - application/json
+      tags:
+        - orders
+  '/vrp/api/orders/{id}/':
+    get:
+      operationId: orders_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - orders
+    put:
+      operationId: orders_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              delivery_location:
+                description: ''
+                type: string
+              customer:
+                description: ''
+                type: string
+              sequence:
+                description: ''
+                type: integer
+              status:
+                description: ''
+                type: string
+              order_type:
+                description: ''
+                type: string
+              delivery_date:
+                description: ''
+                type: string
+              delivery_time_windows:
+                description: ''
+                type: array
+                items:
+                  type: string
+              items:
+                description: ''
+                type: array
+                items:
+                  type: string
+            required:
+              - delivery_date
+      consumes:
+        - application/json
+      tags:
+        - orders
+    patch:
+      operationId: orders_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              delivery_location:
+                description: ''
+                type: string
+              customer:
+                description: ''
+                type: string
+              sequence:
+                description: ''
+                type: integer
+              status:
+                description: ''
+                type: string
+              order_type:
+                description: ''
+                type: string
+              delivery_date:
+                description: ''
+                type: string
+              delivery_time_windows:
+                description: ''
+                type: array
+                items:
+                  type: string
+              items:
+                description: ''
+                type: array
+                items:
+                  type: string
+      consumes:
+        - application/json
+      tags:
+        - orders
+    delete:
+      operationId: orders_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - orders
+  '/vrp/api/orders/{order_id}/delivery-locations/':
+    get:
+      operationId: orders_delivery-locations_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: order_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - orders
+  '/vrp/api/orders/{order_id}/items/':
+    get:
+      operationId: orders_items_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: order_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - orders
+  /vrp/api/products/:
+    get:
+      operationId: products_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - products
+    post:
+      operationId: products_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              uom:
+                description: ''
+                type: string
+              dimension:
+                description: ''
+                type: string
+              weight:
+                description: ''
+                type: number
+              uom_weight:
+                description: ''
+                type: string
+            required:
+              - name
+              - dimension
+      consumes:
+        - application/json
+      tags:
+        - products
+  '/vrp/api/products/{id}/':
+    get:
+      operationId: products_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - products
+    put:
+      operationId: products_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              uom:
+                description: ''
+                type: string
+              dimension:
+                description: ''
+                type: string
+              weight:
+                description: ''
+                type: number
+              uom_weight:
+                description: ''
+                type: string
+            required:
+              - name
+              - dimension
+      consumes:
+        - application/json
+      tags:
+        - products
+    patch:
+      operationId: products_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              uom:
+                description: ''
+                type: string
+              dimension:
+                description: ''
+                type: string
+              weight:
+                description: ''
+                type: number
+              uom_weight:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - products
+    delete:
+      operationId: products_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - products
+  /vrp/api/rest-auth/login/:
+    post:
+      operationId: rest-auth_login_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              username:
+                description: ''
+                type: string
+              email:
+                description: ''
+                type: string
+              password:
+                description: ''
+                type: string
+            required:
+              - password
+      description: |-
+        Check the credentials and return the REST Token
+        if the credentials are valid and authenticated.
+        Calls Django Auth login method to register User ID
+        in Django session framework
+
+        Accept the following POST parameters: username, password
+        Return the REST Framework Token Object's key.
+      summary: Check the credentials and return the REST Token
+      consumes:
+        - application/json
+      tags:
+        - rest-auth
+  /vrp/api/rest-auth/logout/:
+    get:
+      operationId: rest-auth_logout_list
+      responses:
+        '200':
+          description: ''
+      parameters: []
+      description: |-
+        Calls Django logout method and delete the Token object
+        assigned to the current User object.
+
+        Accepts/Returns nothing.
+      summary: Calls Django logout method and delete the Token object
+      tags:
+        - rest-auth
+    post:
+      operationId: rest-auth_logout_create
+      responses:
+        '201':
+          description: ''
+      parameters: []
+      description: |-
+        Calls Django logout method and delete the Token object
+        assigned to the current User object.
+
+        Accepts/Returns nothing.
+      summary: Calls Django logout method and delete the Token object
+      tags:
+        - rest-auth
+  /vrp/api/rest-auth/password/change/:
+    post:
+      operationId: rest-auth_password_change_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              old_password:
+                description: ''
+                type: string
+              new_password1:
+                description: ''
+                type: string
+              new_password2:
+                description: ''
+                type: string
+            required:
+              - old_password
+              - new_password1
+              - new_password2
+      description: |-
+        Calls Django Auth SetPasswordForm save method.
+
+        Accepts the following POST parameters: new_password1, new_password2
+        Returns the success/fail message.
+      summary: Calls Django Auth SetPasswordForm save method.
+      consumes:
+        - application/json
+      tags:
+        - rest-auth
+  /vrp/api/rest-auth/password/reset/:
+    post:
+      operationId: rest-auth_password_reset_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              email:
+                description: ''
+                type: string
+            required:
+              - email
+      description: |-
+        Calls Django Auth PasswordResetForm save method.
+
+        Accepts the following POST parameters: email
+        Returns the success/fail message.
+      summary: Calls Django Auth PasswordResetForm save method.
+      consumes:
+        - application/json
+      tags:
+        - rest-auth
+  /vrp/api/rest-auth/password/reset/confirm/:
+    post:
+      operationId: rest-auth_password_reset_confirm_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              new_password1:
+                description: ''
+                type: string
+              new_password2:
+                description: ''
+                type: string
+              uid:
+                description: ''
+                type: string
+              token:
+                description: ''
+                type: string
+            required:
+              - new_password1
+              - new_password2
+              - uid
+              - token
+      description: |-
+        Password reset e-mail link is confirmed, therefore
+        this resets the user's password.
+
+        Accepts the following POST parameters: token, uid,
+        new_password1, new_password2
+        Returns the success/fail message.
+      summary: 'Password reset e-mail link is confirmed, therefore'
+      consumes:
+        - application/json
+      tags:
+        - rest-auth
+  /vrp/api/rest-auth/user/:
+    get:
+      operationId: rest-auth_user_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+      description: |-
+        Reads and updates UserModel fields
+        Accepts GET, PUT, PATCH methods.
+
+        Default accepted fields: username, first_name, last_name
+        Default display fields: pk, username, email, first_name, last_name
+        Read-only fields: pk, email
+
+        Returns UserModel fields.
+      summary: Reads and updates UserModel fields
+      tags:
+        - rest-auth
+    put:
+      operationId: rest-auth_user_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              first_name:
+                description: ''
+                type: string
+              last_name:
+                description: ''
+                type: string
+              username:
+                description: >-
+                  Required. 150 characters or fewer. Letters, digits and
+                  @/./+/-/_ only.
+                type: string
+              email:
+                description: ''
+                type: string
+            required:
+              - username
+      description: |-
+        Reads and updates UserModel fields
+        Accepts GET, PUT, PATCH methods.
+
+        Default accepted fields: username, first_name, last_name
+        Default display fields: pk, username, email, first_name, last_name
+        Read-only fields: pk, email
+
+        Returns UserModel fields.
+      summary: Reads and updates UserModel fields
+      consumes:
+        - application/json
+      tags:
+        - rest-auth
+    patch:
+      operationId: rest-auth_user_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              first_name:
+                description: ''
+                type: string
+              last_name:
+                description: ''
+                type: string
+              username:
+                description: >-
+                  Required. 150 characters or fewer. Letters, digits and
+                  @/./+/-/_ only.
+                type: string
+              email:
+                description: ''
+                type: string
+      description: |-
+        Reads and updates UserModel fields
+        Accepts GET, PUT, PATCH methods.
+
+        Default accepted fields: username, first_name, last_name
+        Default display fields: pk, username, email, first_name, last_name
+        Read-only fields: pk, email
+
+        Returns UserModel fields.
+      summary: Reads and updates UserModel fields
+      consumes:
+        - application/json
+      tags:
+        - rest-auth
+  '/vrp/api/set-password/{id}/':
+    patch:
+      operationId: set-password_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - set-password
+  /vrp/api/time-windows/:
+    get:
+      operationId: time-windows_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - time-windows
+    post:
+      operationId: time-windows_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              begin:
+                description: ''
+                type: string
+              end:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - time-windows
+  '/vrp/api/time-windows/{id}/':
+    get:
+      operationId: time-windows_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - time-windows
+    put:
+      operationId: time-windows_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              begin:
+                description: ''
+                type: string
+              end:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - time-windows
+    patch:
+      operationId: time-windows_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              begin:
+                description: ''
+                type: string
+              end:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - time-windows
+    delete:
+      operationId: time-windows_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - time-windows
+  /vrp/api/trips/:
+    get:
+      operationId: trips_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: delivery_date
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: source_location
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - trips
+    post:
+      operationId: trips_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              name:
+                description: ''
+                type: string
+              delivery_date:
+                description: ''
+                type: string
+              orders:
+                description: ''
+                type: array
+                items:
+                  type: string
+              carrier_classes:
+                description: ''
+                type: array
+                items:
+                  type: string
+              is_round_trip:
+                description: ''
+                type: boolean
+              plan_data:
+                description: ''
+                type: string
+              plan_type:
+                description: ''
+                type: string
+            required:
+              - name
+              - delivery_date
+      consumes:
+        - application/json
+      tags:
+        - trips
+  '/vrp/api/trips/{id}/':
+    get:
+      operationId: trips_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - trips
+    put:
+      operationId: trips_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              name:
+                description: ''
+                type: string
+              delivery_date:
+                description: ''
+                type: string
+              orders:
+                description: ''
+                type: array
+                items:
+                  type: string
+              carrier_classes:
+                description: ''
+                type: array
+                items:
+                  type: string
+              is_round_trip:
+                description: ''
+                type: boolean
+              plan_data:
+                description: ''
+                type: string
+              plan_type:
+                description: ''
+                type: string
+            required:
+              - name
+              - delivery_date
+      consumes:
+        - application/json
+      tags:
+        - trips
+    patch:
+      operationId: trips_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              source_location:
+                description: ''
+                type: string
+              name:
+                description: ''
+                type: string
+              delivery_date:
+                description: ''
+                type: string
+              orders:
+                description: ''
+                type: array
+                items:
+                  type: string
+              carrier_classes:
+                description: ''
+                type: array
+                items:
+                  type: string
+              is_round_trip:
+                description: ''
+                type: boolean
+              plan_data:
+                description: ''
+                type: string
+              plan_type:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - trips
+    delete:
+      operationId: trips_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - trips
+  '/vrp/api/trips/{trip_id}/carrier-classes/':
+    get:
+      operationId: trips_carrier-classes_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: trip_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: carrier_type
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - trips
+  '/vrp/api/trips/{trip_id}/exports-plan-api/{format_param}/':
+    get:
+      operationId: trips_exports-plan-api_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: format_param
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: trip_id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - trips
+  '/vrp/api/trips/{trip_id}/orders/':
+    get:
+      operationId: trips_orders_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: trip_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: delivery_location
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: delivery_time_windows
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: order_type
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: customer
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - trips
+  /vrp/api/unit-of-measure-categories/:
+    get:
+      operationId: unit-of-measure-categories_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - unit-of-measure-categories
+    post:
+      operationId: unit-of-measure-categories_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+            required:
+              - name
+      consumes:
+        - application/json
+      tags:
+        - unit-of-measure-categories
+  '/vrp/api/unit-of-measure-categories/{id}/':
+    get:
+      operationId: unit-of-measure-categories_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - unit-of-measure-categories
+    put:
+      operationId: unit-of-measure-categories_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+            required:
+              - name
+      consumes:
+        - application/json
+      tags:
+        - unit-of-measure-categories
+    patch:
+      operationId: unit-of-measure-categories_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - unit-of-measure-categories
+    delete:
+      operationId: unit-of-measure-categories_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - unit-of-measure-categories
+  /vrp/api/unit-of-measures/:
+    get:
+      operationId: unit-of-measures_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: category
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - unit-of-measures
+    post:
+      operationId: unit-of-measures_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              uom_type:
+                description: ''
+                type: string
+              category:
+                description: ''
+                type: string
+              rounding:
+                description: ''
+                type: integer
+              factor:
+                description: ''
+                type: number
+            required:
+              - name
+              - uom_type
+              - category
+      consumes:
+        - application/json
+      tags:
+        - unit-of-measures
+  '/vrp/api/unit-of-measures/{id}/':
+    get:
+      operationId: unit-of-measures_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - unit-of-measures
+    put:
+      operationId: unit-of-measures_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              uom_type:
+                description: ''
+                type: string
+              category:
+                description: ''
+                type: string
+              rounding:
+                description: ''
+                type: integer
+              factor:
+                description: ''
+                type: number
+            required:
+              - name
+              - uom_type
+              - category
+      consumes:
+        - application/json
+      tags:
+        - unit-of-measures
+    patch:
+      operationId: unit-of-measures_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                description: ''
+                type: string
+              uom_type:
+                description: ''
+                type: string
+              category:
+                description: ''
+                type: string
+              rounding:
+                description: ''
+                type: integer
+              factor:
+                description: ''
+                type: number
+      consumes:
+        - application/json
+      tags:
+        - unit-of-measures
+    delete:
+      operationId: unit-of-measures_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - unit-of-measures
+  /vrp/api/users/:
+    get:
+      operationId: users_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: offset
+          required: false
+          in: query
+          description: ''
+          type: string
+      tags:
+        - users
+    post:
+      operationId: users_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              first_name:
+                description: ''
+                type: string
+              last_name:
+                description: ''
+                type: string
+              username:
+                description: >-
+                  Required. 150 characters or fewer. Letters, digits and
+                  @/./+/-/_ only.
+                type: string
+              password:
+                description: ''
+                type: string
+              confirm_password:
+                description: ''
+                type: string
+              email:
+                description: ''
+                type: string
+              role:
+                description: ''
+                type: string
+            required:
+              - username
+              - password
+              - confirm_password
+              - role
+      consumes:
+        - application/json
+      tags:
+        - users
+  '/vrp/api/users/{id}/':
+    get:
+      operationId: users_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - users
+    put:
+      operationId: users_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              first_name:
+                description: ''
+                type: string
+              last_name:
+                description: ''
+                type: string
+              username:
+                description: >-
+                  Required. 150 characters or fewer. Letters, digits and
+                  @/./+/-/_ only.
+                type: string
+              password:
+                description: ''
+                type: string
+              confirm_password:
+                description: ''
+                type: string
+              email:
+                description: ''
+                type: string
+              role:
+                description: ''
+                type: string
+            required:
+              - username
+              - password
+              - confirm_password
+              - role
+      consumes:
+        - application/json
+      tags:
+        - users
+    patch:
+      operationId: users_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: data
+          in: body
+          schema:
+            type: object
+            properties:
+              first_name:
+                description: ''
+                type: string
+              last_name:
+                description: ''
+                type: string
+              username:
+                description: >-
+                  Required. 150 characters or fewer. Letters, digits and
+                  @/./+/-/_ only.
+                type: string
+              password:
+                description: ''
+                type: string
+              confirm_password:
+                description: ''
+                type: string
+              email:
+                description: ''
+                type: string
+              role:
+                description: ''
+                type: string
+      consumes:
+        - application/json
+      tags:
+        - users
+    delete:
+      operationId: users_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+      tags:
+        - users
+securityDefinitions:
+  basic:
+    type: basic

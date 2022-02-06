@@ -1,0 +1,170 @@
+[
+{
+  "model": "auth.group",
+  "pk": 3,
+  "fields": {
+    "name": "service_admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 4,
+  "fields": {
+    "name": "order_manager",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 5,
+  "fields": {
+    "name": "back_officer",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 6,
+  "fields": {
+    "name": "sale_person",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 7,
+  "fields": {
+    "name": "trip_manager",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$zMyLhBeKZB56$nWGTbzdU2kSfD0zzckXAp8WhwtAddgxDdjWnNfOwzQY=",
+    "last_login": "2017-02-20T23:52:42.291Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Super",
+    "last_name": "Admin",
+    "email": "admin@morange.co.th",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2016-11-28T21:31:10Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$URisDRmwfMiT$5gYWzz+efK8xoyXKe4GAR3ypGC8N60ArL/1XjniBKk4=",
+    "last_login": "2017-02-16T10:54:43.765Z",
+    "is_superuser": false,
+    "username": "serviceadmin",
+    "first_name": "Service",
+    "last_name": "Admin",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-02-15T21:03:36Z",
+    "groups": [
+      3
+    ],
+    "user_permissions": [
+      79
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$fV89StZ1J8jP$03RXy+4Wz+FW8dE22bRTpZMkpIZhR4PFhXLHu0RdC48=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ordermanager",
+    "first_name": "Order",
+    "last_name": "Manager",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-02-15T21:04:04Z",
+    "groups": [
+      4
+    ],
+    "user_permissions": [
+      80
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$RJsiwnRqdkQP$N8hL5Wh9DL6QqLIqlRH1UdNAKNy/L/9o2hwBhc2/HQU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "backofficer",
+    "first_name": "Back",
+    "last_name": "Officer",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-02-15T21:05:35Z",
+    "groups": [
+      5
+    ],
+    "user_permissions": [
+      81
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$zUvcTweQ6js8$HnF/Oee+5z/mPuhXMu2HGLqyaot56RDChsbnftBxqe0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "saleperson",
+    "first_name": "Sale",
+    "last_name": "Person",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-02-15T21:08:14Z",
+    "groups": [
+      6
+    ],
+    "user_permissions": [
+      82
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$2DQRwcRrv3S9$cHzMq4aR++7rhrEEErvx1pMH29FoWcfJERcrcuSrWG0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "tripmanager",
+    "first_name": "Trip",
+    "last_name": "Manager",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-02-15T21:09:07Z",
+    "groups": [
+      7
+    ],
+    "user_permissions": [
+      83
+    ]
+  }
+}
+]
