@@ -35,3 +35,27 @@ class Driver(AbstractUserRole):
     available_permissions = {
         'view_driver': True,
     }
+
+
+class Admin(AbstractUserRole):
+    available_permissions = {
+        'view_admin': True,
+    }
+
+
+class Judge(AbstractUserRole):
+    available_permissions = {
+        'view_judge': True,
+    }
+
+
+class Teacher(AbstractUserRole):
+    available_permissions = {
+        'view_teacher': True,
+    }
+
+
+class Student(AbstractUserRole):
+    available_permissions = {
+        'view_student': True,
+    }

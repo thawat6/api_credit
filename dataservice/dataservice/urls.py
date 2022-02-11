@@ -25,13 +25,13 @@ from rest_framework.authtoken.views import obtain_auth_token
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 urlpatterns = [
-    url(r'^vrp/api/', include(api_urls), name='api-root'),
-    url(r'^vrp/api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    url(r'^vrp/api/redoc/',
+    url(r'^ct/api/', include(api_urls), name='api-root'),
+    url(r'^ct/api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    url(r'^ct/api/redoc/',
         SpectacularRedocView.as_view(url_name='schema'),
         name='redoc'),
-    url(r'^vrp/admin/', admin.site.urls),
-    url(r'^vrp/graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    url(r'^ct/admin/', admin.site.urls),
+    url(r'^ct/graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns += [url(r'^vrp/api/obtain-auth-token/$', obtain_auth_token)]
+urlpatterns += [url(r'^ct/api/obtain-auth-token/$', obtain_auth_token)]
