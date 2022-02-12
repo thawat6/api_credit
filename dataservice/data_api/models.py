@@ -5,7 +5,6 @@ from rolepermissions.roles import assign_role, remove_role
 
 
 ROLE_CHOICES = (
-    ('driver', 'driver'),
     ('admin', 'Admin'),
     ('judge', 'Judge'),
     ('teacher', 'Teacher'),
@@ -19,6 +18,16 @@ class UserProfile(models.Model):
                                 related_name='user_profile')
 
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+
+    profile_image = models.TextField(
+        null=True,
+        blank=True,
+    )
+
+    file_transcrip = models.TextField(
+        null=True,
+        blank=True,
+    )
 
     def save(self, *args, **kwargs):
         remove_role(self.user, self.role)

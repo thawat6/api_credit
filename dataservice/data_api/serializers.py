@@ -6,7 +6,6 @@ from drf_extra_fields.fields import Base64ImageField
 import json
 
 ROLE_CHOICES = (
-    ('driver', 'driver'),
     ('admin', 'Admin'),
     ('judge', 'Judge'),
     ('teacher', 'Teacher'),
@@ -62,6 +61,28 @@ class UserSerializer(serializers.ModelSerializer):
         user_profile = UserProfile.objects.create(user=user, role=role)
         return user
 
+    def update(self, instance, validated_data):
+        role = validated_data.get('role')
+        if validated_data.get('first_name'):
+            instance.first_name = validated_data.get(
+                'first_name')
+        if validated_data.get('last_name'):
+            instance.last_name = validated_data.get(
+                'last_name')
+        if validated_data.get('username'):
+            instance.username = validated_data.get(
+                'username')
+        if validated_data.get('email'):
+            instance.email = validated_data.get(
+                'email')
+        user_profile = UserProfile.objects.filter(
+            id=instance.id)
+
+        user_profile.update(role=role)
+        instance.save()
+
+        return instance
+
     def get_group(self, obj):
         groups = []
         for group in obj.groups.all():
@@ -115,11 +136,14 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         )
 
     def get_role(self, obj):
-        groups = []
-        for group in obj.groups.all():
-            groups.append(group.name)
-        if len(groups) > 0:
-            return groups[0]
+        role = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+        print(user_profile.values('role'))
+        if user_profile:
+            for item_role in user_profile.values('role'):
+                role = item_role
+        return role
 
 
 class VrpTokenSerializer(serializers.ModelSerializer):
