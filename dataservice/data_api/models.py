@@ -14,14 +14,35 @@ LEVEL_STUDY_CHOICES = (
     ('ปวช', 'ระดับ ปวช.'),
     ('ปวส', 'ระดับ ปวส.'),
     ('ปตรี', 'ระดับปริญญาตรี'),
-    ('ปโท', 'ระดับปริญญาโท'),
-    ('ปเอก', 'ระดับปริญญาเอก'),
+    # ('ปโท', 'ระดับปริญญาโท'),
+    # ('ปเอก', 'ระดับปริญญาเอก'),
 )
 
 TITLE_CHOICES = (
     ('นาย', 'นาย'),
     ('นาง', 'นาง'),
     ('นางสาว', 'นางสาว'),
+)
+
+SUBJECT_TASK_CHOICES = (
+    ('ขอเทียบโอนรายวิชา', 'ขอเทียบโอนรายวิชา'),
+    ('ขอเทียบเพื่อนเรียนแทน', 'ขอเทียบเพื่อนเรียนแทน'),
+)
+
+REGIS_OFFICER_STATE = (
+    ('รอตรวจสอบ', 'รอตรวจสอบ'),
+    ('ดำเนินการเรียบร้อย', 'ดำเนินการเรียบร้อย'),
+    ('อื่นๆ', 'อื่นๆ'),
+)
+
+REQUIRE_CHOICES = (
+    ('พ้นสถานภาพการเป็นนักศึกษาแล้วสอบกลับเข้ามาใหม่ ภายใน 6 ภาคกำรศึกษา',
+     'พ้นสถานภาพการเป็นนักศึกษาแล้วสอบกลับเข้ามาใหม่ ภายใน 6 ภาคกำรศึกษา'),
+    ('โอนย้ายสาขาวิชา/ย้ายเวลาเรียน', 'โอนย้ายสาขาวิชา/ย้ายเวลาเรียน'),
+    ('โอนย้ายสถานศึกษา', 'โอนย้ายสถานศึกษา'),
+    ('เรียนแทนรายวิชาที่เคยเรียนมาแล้ว', 'เรียนแทนรายวิชาที่เคยเรียนมาแล้ว'),
+    ('อื่นๆ ', 'อื่นๆ '),
+
 )
 
 
@@ -69,17 +90,31 @@ class UserProfile(models.Model):
 
 STATUS_EQU_COURSE = (
     ('รอตรวจสอบ', 'รอตรวจสอบ'),
-    ('ผ่าน', 'ผ่าน'),
-    ('ไม่ผ่าน', 'ไม่ผ่าน'),
+    ('ได้', 'ได้'),
+    ('ไม่ได้', 'ไม่ได้'),
+)
+TYPE_CREDIT_CHOICES = (
+    ('ท', 'ท'),
+    ('ป', 'ป'),
+    ('ร', 'ร'),
 )
 
 
 class StudentCourseStructure(models.Model):
+
     course_code = models.CharField(max_length=25, null=True,
                                    blank=True,)
     course_title = models.CharField(max_length=100, null=True,
                                     blank=True,)
+    credit_type = models.CharField(
+        max_length=20, choices=TYPE_CREDIT_CHOICES, default='ท')
     credit = models.IntegerField(default=0)
+    course = models.CharField(max_length=250, null=True,
+                              blank=True,)
+    subject = models.CharField(max_length=250, null=True,
+                               blank=True,)
+    course_year = models.CharField(max_length=30, null=True,
+                                   blank=True,)
     description_file = models.TextField(
         null=True,
         blank=True,
@@ -103,11 +138,19 @@ class StructurePreferredCourseEnroll(models.Model):
                                    blank=True,)
     course_title = models.CharField(max_length=100, null=True,
                                     blank=True,)
-    section = models.CharField(max_length=100, null=True,
+    credit_type = models.CharField(
+        max_length=20, choices=TYPE_CREDIT_CHOICES, default='ท')
+    credit = models.IntegerField(default=0)
+    course = models.CharField(max_length=250, null=True,
+                              blank=True,)
+    subject = models.CharField(max_length=250, null=True,
                                blank=True,)
-    lecturer = models.CharField(max_length=100, null=True,
-                                blank=True,)
-
+    course_year = models.CharField(max_length=30, null=True,
+                                   blank=True,)
+    description_file = models.TextField(
+        null=True,
+        blank=True,
+    )
     created_user = models.ForeignKey(User,
                                      null=True,
                                      blank=True,
@@ -123,6 +166,7 @@ class StructurePreferredCourseEnroll(models.Model):
 
 
 class EquivalentCourse(models.Model):
+
     student_course = models.ForeignKey(StudentCourseStructure,
                                        null=True,
                                        blank=True,
@@ -133,7 +177,8 @@ class EquivalentCourse(models.Model):
                                       on_delete=models.SET_NULL)
     status = models.CharField(
         max_length=50, choices=STATUS_EQU_COURSE, default='รอตรวจสอบ')
-
+    semester = models.CharField(max_length=30, null=True,
+                                blank=True,)
     created_user = models.ForeignKey(User,
                                      null=True,
                                      blank=True,
@@ -149,48 +194,157 @@ class EquivalentCourse(models.Model):
 
 
 class TransferringEquivalentCourse(models.Model):
+
+    # ประเภท
+    equivalent_type = models.CharField(
+        max_length=50, choices=SUBJECT_TASK_CHOICES, default='ขอเทียบโอนรายวิชา')
+
     equivalent_item = models.ManyToManyField(EquivalentCourse,
                                              blank=True,
                                              related_name="transferring_equivalent_item")
-    semester = models.CharField(max_length=25, null=True,
-                                blank=True,)
-    academic_year = models.CharField(max_length=25, null=True,
-                                     blank=True,)
-    dean_faculty = models.CharField(max_length=100, null=True,
+    # เคยศึกษาจาก
+    studied_from = models.CharField(max_length=250, null=True,
                                     blank=True,)
-    name_committee1 = models.CharField(max_length=100, null=True,
-                                       blank=True,)
-    name_committee2 = models.CharField(max_length=100, null=True,
-                                       blank=True,)
-    name_committee3 = models.CharField(max_length=100, null=True,
-                                       blank=True,)
-    name_committee4 = models.CharField(max_length=100, null=True,
-                                       blank=True,)
+    # จำนวนวิชา
+    number_of_equivalent = models.IntegerField(default=0)
+    # จำนวนหน่วยกิจ
+    number_of_credit = models.IntegerField(default=0)
+    # dean_faculty = models.CharField(max_length=100, null=True,
+    #                                 blank=True,)
+    name_committee1 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee1_user",
+                                        on_delete=models.SET_NULL)
+    name_committee2 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee2_user",
+                                        on_delete=models.SET_NULL)
+    name_committee3 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee3_user",
+                                        on_delete=models.SET_NULL)
+    name_committee4 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee4_user",
+                                        on_delete=models.SET_NULL)
+    name_committee5 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee5_user",
+                                        on_delete=models.SET_NULL)
+    name_committee6 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee6_user",
+                                        on_delete=models.SET_NULL)
     is_approve_committee1 = models.BooleanField(default=False, )
     is_approve_committee2 = models.BooleanField(default=False, )
     is_approve_committee3 = models.BooleanField(default=False, )
     is_approve_committee4 = models.BooleanField(default=False, )
-    advisor_name = models.CharField(max_length=100, null=True,
-                                    blank=True,)
+    is_approve_committee5 = models.BooleanField(default=False, )
+    is_approve_committee6 = models.BooleanField(default=False, )
+
+    advisor = models.ForeignKey(User,
+                                null=True,
+                                blank=True,
+                                related_name="advisor_user",
+                                on_delete=models.SET_NULL)
     advisor_comment = models.TextField(
         null=True,
         blank=True,
     )
     advisor_approve = models.BooleanField(default=False, )
-    head_department_name = models.CharField(max_length=100, null=True,
-                                            blank=True,)
+    advisor_date = models.DateTimeField(null=True,
+                                        blank=True,)
+
+    # หัวหน้าสาขา
+    head_department = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="head_department_user",
+                                        on_delete=models.SET_NULL)
     head_department_comment = models.TextField(
         null=True,
         blank=True,
     )
     head_department_approve = models.BooleanField(default=False, )
-    head_educational_name = models.CharField(max_length=100, null=True,
-                                             blank=True,)
+    head_department_date = models.DateTimeField(null=True,
+                                                blank=True,)
+
+    # หัวหน้างานบริการการศึกษา สำนักงานคณบดี
+    head_educational = models.ForeignKey(User,
+                                         null=True,
+                                         blank=True,
+                                         related_name="head_educational_user",
+                                         on_delete=models.SET_NULL)
     head_educational_comment = models.TextField(
         null=True,
         blank=True,
     )
     head_educational_approve = models.BooleanField(default=False, )
+    head_educational_date = models.DateTimeField(null=True,
+                                                 blank=True,)
+
+    # รองคณบดีฝ่ายวิชาการและวิจัย
+    deputy_dean_a_r = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="deputy_dean_a_r_user",
+                                        on_delete=models.SET_NULL)
+    deputy_dean_a_r_comment = models.TextField(
+        null=True,
+        blank=True,
+    )
+    deputy_dean_a_r_approve = models.BooleanField(default=False, )
+    deputy_dean_a_r_date = models.DateTimeField(null=True,
+                                                blank=True,)
+
+    # คณบดี
+    dean = models.ForeignKey(User,
+                             null=True,
+                             blank=True,
+                             related_name="dean_user",
+                             on_delete=models.SET_NULL)
+    dean_comment = models.TextField(
+        null=True,
+        blank=True,
+    )
+    dean_approve = models.BooleanField(default=False, )
+    dean_date = models.DateTimeField(null=True,
+                                     blank=True,)
+
+    # หัวหน้าแผนกงานส่งเสริมวิาการและงานทะเบียน
+    head_academic_p_r = models.ForeignKey(User,
+                                          null=True,
+                                          blank=True,
+                                          related_name="head_academic_p_r_user",
+                                          on_delete=models.SET_NULL)
+    head_academic_p_r_comment = models.TextField(
+        null=True,
+        blank=True,
+    )
+    # head_academic_p_r_approve = models.BooleanField(default=False, )
+    head_academic_p_r_date = models.DateTimeField(null=True,
+                                                  blank=True,)
+
+    # เจ้าหน้าที่ทะเบียน
+    registrar_officer = models.ForeignKey(User,
+                                          null=True,
+                                          blank=True,
+                                          related_name="registrar_officer_user",
+                                          on_delete=models.SET_NULL)
+    registrar_officer_comment = models.TextField(
+        null=True,
+        blank=True,
+    )
+    registrar_officer_approve = models.CharField(
+        max_length=50, choices=REGIS_OFFICER_STATE, default='รอตรวจสอบ')
+    registrar_officer_date = models.DateTimeField(null=True,
+                                                  blank=True,)
 
     created_user = models.ForeignKey(User,
                                      null=True,
