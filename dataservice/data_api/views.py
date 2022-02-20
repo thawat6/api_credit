@@ -1,6 +1,6 @@
 from rest_framework import routers, serializers, viewsets, generics, status, mixins
 from data_api.models import UserProfile
-from data_api.serializers import SetUserPassword, UserSerializer, UserDetailsSerializer
+from data_api.serializers import SetUserPassword, UserSerializer, UserDetailsSerializer, UpdateUserProfileSerializer
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -53,3 +53,9 @@ class UserViewSet(viewsets.ModelViewSet):
         ]:
             return UserDetailsSerializer
         return UserSerializer
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UpdateUserProfileSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
