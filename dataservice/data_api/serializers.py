@@ -1,5 +1,5 @@
 from rest_framework import routers, serializers
-from data_api.models import UserProfile
+from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, EquivalentCourse, TransferringEquivalentCourse
 from django.contrib.auth.models import User, Group
 from rest_framework.authtoken.models import Token
 from drf_extra_fields.fields import Base64ImageField
@@ -308,3 +308,131 @@ class UpdateUserProfileSerializer(serializers.ModelSerializer):
                   'class_level', 'tel')
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
+
+
+class StudentCourseStructureSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = StudentCourseStructure
+        fields = ('course_code', 'course_title', 'credit_type', 'credit', 'course',
+                  'subject', 'course_year', 'description_file', 'created_user',)
+        read_only_fields = ('updated_user', 'created_at',
+                            'updated_at')
+
+
+class StructurePreferredCourseEnrollSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = StructurePreferredCourseEnroll
+        fields = ('course_code', 'course_title', 'credit_type', 'credit', 'course',
+                  'subject', 'course_year', 'description_file', 'created_user',)
+        read_only_fields = ('updated_user', 'created_at',
+                            'updated_at')
+
+
+class EquivalentCourseSerializer(serializers.ModelSerializer):
+    student_course = StudentCourseStructureSerializer()
+    course_enroll = StructurePreferredCourseEnrollSerializer()
+
+    class Meta:
+        model = EquivalentCourse
+        fields = ('id', 'student_course',
+                  'course_enroll', 'status', 'semester', )
+        # exclude = ('created_user','updated_user','created_at','updated_at')
+        read_only_fields = ('created_user', 'updated_user', 'created_at',
+                            'updated_at')
+
+
+class EquivalentCourseCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EquivalentCourse
+        exclude = ('created_user', 'updated_user', 'created_at', 'updated_at')
+        read_only_fields = ('created_user', 'updated_user', 'created_at',
+                            'updated_at')
+
+    def create(self, validated_data):
+        user = None
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            validated_data['created_user'] = request.user
+        orderitem = EquivalentCourse.objects.create(**validated_data)
+        return orderitem
+
+
+class TransferringEquivalentCourseSerializer(serializers.ModelSerializer):
+
+    equivalent_item = EquivalentCourseSerializer(many=True)
+
+    class Meta:
+        model = TransferringEquivalentCourse
+        exclude = ('created_user', 'updated_user',)
+        read_only_fields = ('created_user', 'updated_user',
+                            )
+
+
+class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
+
+    equivalent_item = EquivalentCourseCreateSerializer(
+        required=False, many=True)
+
+    class Meta:
+        model = TransferringEquivalentCourse
+        fields = ('id', 'equivalent_type', 'equivalent_item', 'studied_from', 'number_of_equivalent',
+                  'number_of_credit', 'name_committee1', 'name_committee2',
+                  'name_committee3', 'name_committee4', 'name_committee5', 'name_committee6', 'is_approve_committee1',
+                  'is_approve_committee2', 'is_approve_committee3', 'is_approve_committee4',
+                  'is_approve_committee5', 'is_approve_committee6', 'advisor', 'advisor_comment',
+                  'advisor_approve', 'advisor_date', 'head_department', 'head_department_comment', 'head_department_approve', 'head_department_date',
+                  'head_educational',  'head_educational_comment', 'head_educational_approve', 'head_educational_date',
+                  'deputy_dean_a_r', 'deputy_dean_a_r_comment', 'deputy_dean_a_r_approve', 'deputy_dean_a_r_date',
+                  'dean', 'dean_comment', 'dean_approve', 'dean_date',
+                  'head_academic_p_r', 'head_academic_p_r_comment', 'head_academic_p_r_date',
+                  'registrar_officer', 'registrar_officer_comment', 'registrar_officer_approve', 'registrar_officer_date')
+        read_only_fields = ('created_user', 'updated_user', 'created_at',
+                            'updated_at')
+
+    def create(self, validated_data):
+
+        user = None
+        request = self.context.get("request")
+
+        if request and hasattr(request, "user"):
+            validated_data['created_user'] = request.user
+        name_committee1 = validated_data.pop('name_committee1')
+        name_committee2 = validated_data.pop('name_committee2')
+        name_committee3 = validated_data.pop('name_committee3')
+        name_committee4 = validated_data.pop('name_committee4')
+        name_committee5 = validated_data.pop('name_committee5')
+        name_committee6 = validated_data.pop('name_committee6')
+        advisor = validated_data.pop('advisor')
+        head_department = validated_data.pop('head_department')
+        head_educational = validated_data.pop('head_educational')
+        deputy_dean_a_r = validated_data.pop('deputy_dean_a_r')
+        dean = validated_data.pop('dean')
+        head_academic_p_r = validated_data.pop('head_academic_p_r')
+        registrar_officer = validated_data.pop('registrar_officer')
+
+        equivalent_item_data = validated_data.pop('equivalent_item')
+
+        task = TransferringEquivalentCourse.objects.create(**validated_data)
+
+        # task.name_committee1.set(name_committee1)
+        # task.name_committee2.set(name_committee2)
+        # task.name_committee3.set(name_committee3)
+        # task.name_committee4.set(name_committee4)
+        # task.name_committee5.set(name_committee5)
+        # task.name_committee6.set(name_committee6)
+        # task.advisor.set(advisor)
+        # task.head_department.set(head_department)
+        # task.head_educational.set(head_educational)
+        # task.deputy_dean_a_r.set(deputy_dean_a_r)
+        # task.dean.set(dean)
+        # task.head_academic_p_r.set(head_academic_p_r)
+        # task.registrar_officer.set(registrar_officer)
+
+        for data in equivalent_item_data:
+            items = EquivalentCourse.objects.create(**data)
+            task.equivalent_item.add(items)
+
+        return task
