@@ -360,9 +360,38 @@ class EquivalentCourseCreateSerializer(serializers.ModelSerializer):
         return orderitem
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name',
+                  'username', 'email',)
+        write_only_fields = ('password', )
+        read_only_fields = (
+            'id',
+            'is_staff',
+            'is_superuser',
+            'is_active',
+            'date_joined',
+        )
+
+
 class TransferringEquivalentCourseSerializer(serializers.ModelSerializer):
 
     equivalent_item = EquivalentCourseSerializer(many=True)
+    name_committee1 = UserProfileSerializer()
+    name_committee2 = UserProfileSerializer()
+    name_committee3 = UserProfileSerializer()
+    name_committee4 = UserProfileSerializer()
+    name_committee5 = UserProfileSerializer()
+    name_committee6 = UserProfileSerializer()
+    advisor = UserProfileSerializer()
+    head_department = UserProfileSerializer()
+    head_educational = UserProfileSerializer()
+    deputy_dean_a_r = UserProfileSerializer()
+    dean = UserProfileSerializer()
+    head_academic_p_r = UserProfileSerializer()
+    registrar_officer = UserProfileSerializer()
 
     class Meta:
         model = TransferringEquivalentCourse
@@ -415,21 +444,21 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
 
         equivalent_item_data = validated_data.pop('equivalent_item')
 
-        task = TransferringEquivalentCourse.objects.create(**validated_data)
+        validated_data["name_committee1"] = name_committee1
+        validated_data["name_committee2"] = name_committee2
+        validated_data["name_committee3"] = name_committee3
+        validated_data["name_committee4"] = name_committee4
+        validated_data["name_committee5"] = name_committee5
+        validated_data["name_committee6"] = name_committee6
+        validated_data["advisor"] = advisor
+        validated_data["head_department"] = head_department
+        validated_data["head_educational"] = head_educational
+        validated_data["deputy_dean_a_r"] = deputy_dean_a_r
+        validated_data["dean"] = dean
+        validated_data["head_academic_p_r"] = head_academic_p_r
+        validated_data["registrar_officer"] = registrar_officer
 
-        # task.name_committee1.set(name_committee1)
-        # task.name_committee2.set(name_committee2)
-        # task.name_committee3.set(name_committee3)
-        # task.name_committee4.set(name_committee4)
-        # task.name_committee5.set(name_committee5)
-        # task.name_committee6.set(name_committee6)
-        # task.advisor.set(advisor)
-        # task.head_department.set(head_department)
-        # task.head_educational.set(head_educational)
-        # task.deputy_dean_a_r.set(deputy_dean_a_r)
-        # task.dean.set(dean)
-        # task.head_academic_p_r.set(head_academic_p_r)
-        # task.registrar_officer.set(registrar_officer)
+        task = TransferringEquivalentCourse.objects.create(**validated_data)
 
         for data in equivalent_item_data:
             items = EquivalentCourse.objects.create(**data)
