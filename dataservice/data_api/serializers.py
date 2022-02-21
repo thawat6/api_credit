@@ -303,7 +303,7 @@ class VrpTokenSerializer(serializers.ModelSerializer):
 class UpdateUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('role', 'title', 'student_id', 'level_of_study', 'profile_image',
+        fields = ('full_name', 'role', 'title', 'student_id', 'level_of_study', 'profile_image',
                   'file_transcrip', 'faculty', 'field_of_study',
                   'class_level', 'tel')
         read_only_fields = ('created_user', 'updated_user', 'created_at',

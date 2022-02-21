@@ -59,6 +59,9 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UpdateUserProfileSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filter_fields = ('role',)
+    search_fields = ('full_name', 'tel'
+                     )
 
 
 class StudentCourseStructureViewset(viewsets.ModelViewSet):

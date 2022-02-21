@@ -51,6 +51,9 @@ class UserProfile(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='user_profile')
 
+    full_name = models.CharField(max_length=250, null=True,
+                                 blank=True,)
+
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
     title = models.CharField(max_length=25, choices=TITLE_CHOICES, null=True,
@@ -82,6 +85,8 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         remove_role(self.user, self.role)
         assign_role(self.user, self.role)
+        print(self.user.first_name)
+        self.full_name = self.user.first_name + ' ' + self.user.last_name
         super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
