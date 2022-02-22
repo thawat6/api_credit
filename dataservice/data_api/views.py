@@ -21,7 +21,7 @@ from rest_framework import routers, serializers, viewsets, generics, status, mix
 from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, TransferringEquivalentCourse
 from data_api.serializers import SetUserPassword, UserSerializer, UserDetailsSerializer, UpdateUserProfileSerializer, \
     StudentCourseStructureSerializer, StructurePreferredCourseEnrollSerializer, TransferringEquivalentCourseSerializer,\
-    TransferringEquivalentCourseCreateSerializer
+    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer
 
 
 @api_view(['PATCH'])
@@ -104,5 +104,5 @@ class TransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
                 'PUT',
                 'PATCH',
         ]:
-            return TransferringEquivalentCourseCreateSerializer
+            return TransferringEquivalentCourseUpdateSerializer
         return TransferringEquivalentCourseSerializer

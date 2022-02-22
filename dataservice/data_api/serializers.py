@@ -409,25 +409,26 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
         model = TransferringEquivalentCourse
         fields = ('id', 'equivalent_type', 'equivalent_item', 'studied_from', 'number_of_equivalent',
                   'number_of_credit', 'name_committee1', 'name_committee2',
-                  'name_committee3', 'name_committee4', 'name_committee5', 'name_committee6', 'is_approve_committee1',
-                  'is_approve_committee2', 'is_approve_committee3', 'is_approve_committee4',
-                  'is_approve_committee5', 'is_approve_committee6', 'advisor', 'advisor_comment',
-                  'advisor_approve', 'advisor_date', 'head_department', 'head_department_comment', 'head_department_approve', 'head_department_date',
-                  'head_educational',  'head_educational_comment', 'head_educational_approve', 'head_educational_date',
-                  'deputy_dean_a_r', 'deputy_dean_a_r_comment', 'deputy_dean_a_r_approve', 'deputy_dean_a_r_date',
-                  'dean', 'dean_comment', 'dean_approve', 'dean_date',
-                  'head_academic_p_r', 'head_academic_p_r_comment', 'head_academic_p_r_date',
-                  'registrar_officer', 'registrar_officer_comment', 'registrar_officer_approve', 'registrar_officer_date')
-        read_only_fields = ('created_user', 'updated_user', 'created_at',
+                  'name_committee3', 'name_committee4', 'name_committee5', 'name_committee6',
+                  'advisor',
+                  'head_department',
+                  'head_educational',
+                  'deputy_dean_a_r',
+                  'dean',
+                  'head_academic_p_r',
+                  'registrar_officer',
+                  'created_user',)
+        read_only_fields = ('updated_user', 'created_at',
                             'updated_at')
 
     def create(self, validated_data):
 
-        user = None
-        request = self.context.get("request")
+        # user = None
+        # request = self.context.get("request")
 
-        if request and hasattr(request, "user"):
-            validated_data['created_user'] = request.user
+        # if request and hasattr(request, "user"):
+        #     validated_data['created_user'] = request.user
+        created_user = validated_data.pop('created_user')
         name_committee1 = validated_data.pop('name_committee1')
         name_committee2 = validated_data.pop('name_committee2')
         name_committee3 = validated_data.pop('name_committee3')
@@ -444,6 +445,7 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
 
         equivalent_item_data = validated_data.pop('equivalent_item')
 
+        validated_data["created_user"] = created_user
         validated_data["name_committee1"] = name_committee1
         validated_data["name_committee2"] = name_committee2
         validated_data["name_committee3"] = name_committee3
@@ -465,3 +467,161 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
             task.equivalent_item.add(items)
 
         return task
+
+
+class TransferringEquivalentCourseUpdateSerializer(serializers.ModelSerializer):
+    # equivalent_item = EquivalentCourseCreateSerializer(
+    #     required=False, many=True)
+
+    class Meta:
+        model = TransferringEquivalentCourse
+        fields = ('id', 'equivalent_type',  'studied_from', 'number_of_equivalent',
+                  'number_of_credit', 'name_committee1', 'name_committee2',
+                  'name_committee3', 'name_committee4', 'name_committee5', 'name_committee6', 'is_approve_committee1',
+                  'is_approve_committee2', 'is_approve_committee3', 'is_approve_committee4',
+                  'is_approve_committee5', 'is_approve_committee6',
+                  'advisor', 'advisor_comment', 'advisor_approve', 'advisor_date',
+                  'head_department', 'head_department_comment', 'head_department_approve', 'head_department_date',
+                  'head_educational',  'head_educational_comment', 'head_educational_approve', 'head_educational_date',
+                  'deputy_dean_a_r', 'deputy_dean_a_r_comment', 'deputy_dean_a_r_approve', 'deputy_dean_a_r_date',
+                  'dean', 'dean_comment', 'dean_approve', 'dean_date',
+                  'head_academic_p_r', 'head_academic_p_r_comment', 'head_academic_p_r_date',
+                  'registrar_officer', 'registrar_officer_comment', 'registrar_officer_approve', 'registrar_officer_date')
+        read_only_fields = ('created_user', 'updated_user', 'created_at',
+                            'updated_at')
+
+    def update(self, instance, validated_data):
+
+        if validated_data.get('equivalent_type'):
+            instance.equivalent_type = validated_data.get('equivalent_type')
+        if validated_data.get('studied_from'):
+            instance.studied_from = validated_data.get('studied_from')
+        if validated_data.get('number_of_equivalent'):
+            instance.number_of_equivalent = validated_data.get(
+                'number_of_equivalent')
+        if validated_data.get('number_of_credit'):
+            instance.number_of_credit = validated_data.get('number_of_credit')
+
+        if validated_data.get('name_committee1'):
+            instance.name_committee1 = validated_data.get('name_committee1')
+
+        if validated_data.get('name_committee2'):
+            instance.name_committee2 = validated_data.get('name_committee2')
+
+        if validated_data.get('name_committee3'):
+            instance.name_committee3 = validated_data.get('name_committee3')
+
+        if validated_data.get('name_committee4'):
+            instance.name_committee4 = validated_data.get('name_committee4')
+
+        if validated_data.get('name_committee5'):
+            instance.name_committee5 = validated_data.get('name_committee5')
+
+        if validated_data.get('name_committee6'):
+            instance.name_committee6 = validated_data.get('name_committee6')
+
+        if validated_data.get('is_approve_committee1'):
+            instance.is_approve_committee1 = validated_data.get(
+                'is_approve_committee1')
+        if validated_data.get('is_approve_committee2'):
+            instance.is_approve_committee2 = validated_data.get(
+                'is_approve_committee2')
+        if validated_data.get('is_approve_committee3'):
+            instance.is_approve_committee3 = validated_data.get(
+                'is_approve_committee3')
+        if validated_data.get('is_approve_committee4'):
+            instance.is_approve_committee4 = validated_data.get(
+                'is_approve_committee4')
+        if validated_data.get('is_approve_committee5'):
+            instance.is_approve_committee5 = validated_data.get(
+                'is_approve_committee5')
+        if validated_data.get('is_approve_committee6'):
+            instance.is_approve_committee6 = validated_data.get(
+                'is_approve_committee6')
+
+        if validated_data.get('advisor'):
+            instance.advisor = validated_data.get('advisor')
+        if validated_data.get('advisor_comment'):
+            instance.advisor_comment = validated_data.get('advisor_comment')
+        if validated_data.get('advisor_approve'):
+            instance.advisor_approve = validated_data.get('advisor_approve')
+        if validated_data.get('advisor_date'):
+            instance.advisor_date = validated_data.get('advisor_date')
+
+        if validated_data.get('head_department'):
+            instance.head_department = validated_data.get('head_department')
+        if validated_data.get('head_department_comment'):
+            instance.head_department_comment = validated_data.get(
+                'head_department_comment')
+        if validated_data.get('head_department_approve'):
+            instance.head_department_approve = validated_data.get(
+                'head_department_approve')
+        if validated_data.get('head_department_date'):
+            instance.head_department_date = validated_data.get(
+                'head_department_date')
+
+        if validated_data.get('head_educational'):
+            instance.head_educational = validated_data.get('head_educational')
+        if validated_data.get('head_educational_comment'):
+            instance.head_educational_comment = validated_data.get(
+                'head_educational_comment')
+        if validated_data.get('head_educational_approve'):
+            instance.head_educational_approve = validated_data.get(
+                'head_educational_approve')
+        if validated_data.get('head_educational_date'):
+            instance.head_educational_date = validated_data.get(
+                'head_educational_date')
+
+        if validated_data.get('deputy_dean_a_r'):
+            instance.deputy_dean_a_r = validated_data.get('deputy_dean_a_r')
+        if validated_data.get('deputy_dean_a_r_comment'):
+            instance.deputy_dean_a_r_comment = validated_data.get(
+                'deputy_dean_a_r_comment')
+        if validated_data.get('deputy_dean_a_r_approve'):
+            instance.deputy_dean_a_r_approve = validated_data.get(
+                'deputy_dean_a_r_approve')
+        if validated_data.get('deputy_dean_a_r_date'):
+            instance.deputy_dean_a_r_date = validated_data.get(
+                'deputy_dean_a_r_date')
+
+        if validated_data.get('dean'):
+            instance.dean = validated_data.get('dean')
+        if validated_data.get('dean_comment'):
+            instance.dean_comment = validated_data.get('dean_comment')
+        if validated_data.get('dean_approve'):
+            instance.dean_approve = validated_data.get('dean_approve')
+        if validated_data.get('dean_date'):
+            instance.dean_date = validated_data.get('dean_date')
+
+        if validated_data.get('head_academic_p_r'):
+            instance.head_academic_p_r = validated_data.get(
+                'head_academic_p_r')
+        if validated_data.get('head_academic_p_r_comment'):
+            instance.head_academic_p_r_comment = validated_data.get(
+                'head_academic_p_r_comment')
+        if validated_data.get('head_academic_p_r_date'):
+            instance.head_academic_p_r_date = validated_data.get(
+                'head_academic_p_r_date')
+
+        if validated_data.get('registrar_officer'):
+            instance.registrar_officer = validated_data.get(
+                'registrar_officer')
+        if validated_data.get('registrar_officer_comment'):
+            instance.registrar_officer_comment = validated_data.get(
+                'registrar_officer_comment')
+        if validated_data.get('registrar_officer_approve'):
+            instance.registrar_officer_approve = validated_data.get(
+                'registrar_officer_approve')
+        if validated_data.get('registrar_officer_date'):
+            instance.registrar_officer_date = validated_data.get(
+                'registrar_officer_date')
+
+        # if validated_data.get('equivalent_item'):
+        #     equivalent_item_data = validated_data.get('equivalent_item')
+
+        #     for data in equivalent_item_data:
+        #         items = EquivalentCourse.objects.update(**data)
+        #         instance.equivalent_item.add(items)
+
+        instance.save()
+        return instance

@@ -211,9 +211,9 @@ class TransferringEquivalentCourse(models.Model):
     studied_from = models.CharField(max_length=250, null=True,
                                     blank=True,)
     # จำนวนวิชา
-    number_of_equivalent = models.IntegerField(default=0)
+    number_of_equivalent = models.IntegerField(default=0, null=True)
     # จำนวนหน่วยกิจ
-    number_of_credit = models.IntegerField(default=0)
+    number_of_credit = models.IntegerField(default=0, null=True)
     # dean_faculty = models.CharField(max_length=100, null=True,
     #                                 blank=True,)
     name_committee1 = models.ForeignKey(User,
@@ -246,12 +246,12 @@ class TransferringEquivalentCourse(models.Model):
                                         blank=True,
                                         related_name="committee6_user",
                                         on_delete=models.SET_NULL)
-    is_approve_committee1 = models.BooleanField(default=False, )
-    is_approve_committee2 = models.BooleanField(default=False, )
-    is_approve_committee3 = models.BooleanField(default=False, )
-    is_approve_committee4 = models.BooleanField(default=False, )
-    is_approve_committee5 = models.BooleanField(default=False, )
-    is_approve_committee6 = models.BooleanField(default=False, )
+    is_approve_committee1 = models.BooleanField(default=False, null=True)
+    is_approve_committee2 = models.BooleanField(default=False, null=True)
+    is_approve_committee3 = models.BooleanField(default=False, null=True)
+    is_approve_committee4 = models.BooleanField(default=False, null=True)
+    is_approve_committee5 = models.BooleanField(default=False, null=True)
+    is_approve_committee6 = models.BooleanField(default=False, null=True)
 
     advisor = models.ForeignKey(User,
                                 null=True,
@@ -262,7 +262,7 @@ class TransferringEquivalentCourse(models.Model):
         null=True,
         blank=True,
     )
-    advisor_approve = models.BooleanField(default=False, )
+    advisor_approve = models.BooleanField(default=False, null=True)
     advisor_date = models.DateTimeField(null=True,
                                         blank=True,)
 
@@ -276,7 +276,7 @@ class TransferringEquivalentCourse(models.Model):
         null=True,
         blank=True,
     )
-    head_department_approve = models.BooleanField(default=False, )
+    head_department_approve = models.BooleanField(default=False, null=True)
     head_department_date = models.DateTimeField(null=True,
                                                 blank=True,)
 
@@ -290,7 +290,7 @@ class TransferringEquivalentCourse(models.Model):
         null=True,
         blank=True,
     )
-    head_educational_approve = models.BooleanField(default=False, )
+    head_educational_approve = models.BooleanField(default=False, null=True)
     head_educational_date = models.DateTimeField(null=True,
                                                  blank=True,)
 
@@ -304,7 +304,7 @@ class TransferringEquivalentCourse(models.Model):
         null=True,
         blank=True,
     )
-    deputy_dean_a_r_approve = models.BooleanField(default=False, )
+    deputy_dean_a_r_approve = models.BooleanField(default=False, null=True)
     deputy_dean_a_r_date = models.DateTimeField(null=True,
                                                 blank=True,)
 
@@ -318,7 +318,7 @@ class TransferringEquivalentCourse(models.Model):
         null=True,
         blank=True,
     )
-    dean_approve = models.BooleanField(default=False, )
+    dean_approve = models.BooleanField(default=False, null=True)
     dean_date = models.DateTimeField(null=True,
                                      blank=True,)
 
@@ -347,7 +347,7 @@ class TransferringEquivalentCourse(models.Model):
         blank=True,
     )
     registrar_officer_approve = models.CharField(
-        max_length=50, choices=REGIS_OFFICER_STATE, default='รอตรวจสอบ')
+        max_length=50, choices=REGIS_OFFICER_STATE, default='รอตรวจสอบ', null=True)
     registrar_officer_date = models.DateTimeField(null=True,
                                                   blank=True,)
 
