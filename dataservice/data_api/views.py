@@ -21,7 +21,7 @@ from rest_framework import routers, serializers, viewsets, generics, status, mix
 from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, TransferringEquivalentCourse
 from data_api.serializers import SetUserPassword, UserSerializer, UserDetailsSerializer, UpdateUserProfileSerializer, \
     StudentCourseStructureSerializer, StructurePreferredCourseEnrollSerializer, TransferringEquivalentCourseSerializer,\
-    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer
+    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer, ShowUserProfileSerializer
 
 
 @api_view(['PATCH'])
@@ -57,11 +57,23 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
-    serializer_class = UpdateUserProfileSerializer
+    serializer_class = ShowUserProfileSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     filter_fields = ('role',)
     search_fields = ('full_name', 'tel'
                      )
+
+    def get_serializer_class(self):
+        if self.request.method in [
+                'POST',
+        ]:
+            return UpdateUserProfileSerializer
+        if self.request.method in [
+                'PUT',
+                'PATCH',
+        ]:
+            return UpdateUserProfileSerializer
+        return ShowUserProfileSerializer
 
 
 class StudentCourseStructureViewset(viewsets.ModelViewSet):
