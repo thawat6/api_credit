@@ -120,7 +120,15 @@ class StudentCourseStructure(models.Model):
                                blank=True,)
     course_year = models.CharField(max_length=30, null=True,
                                    blank=True,)
+    grade = models.CharField(max_length=30, null=True,
+                             blank=True,)
+    school = models.CharField(max_length=250, null=True,
+                              blank=True,)
     description_file = models.TextField(
+        null=True,
+        blank=True,
+    )
+    description = models.TextField(
         null=True,
         blank=True,
     )
@@ -156,6 +164,14 @@ class StructurePreferredCourseEnroll(models.Model):
         null=True,
         blank=True,
     )
+    description = models.TextField(
+        null=True,
+        blank=True,
+    )
+    grade = models.CharField(max_length=30, null=True,
+                             blank=True,)
+    school = models.CharField(max_length=250, null=True,
+                              blank=True,)
     created_user = models.ForeignKey(User,
                                      null=True,
                                      blank=True,
