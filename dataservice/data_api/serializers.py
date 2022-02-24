@@ -335,7 +335,7 @@ class StructurePreferredCourseEnrollSerializer(serializers.ModelSerializer):
     class Meta:
         model = StructurePreferredCourseEnroll
         fields = ('course_code', 'course_title', 'credit_type', 'credit', 'course',
-                  'subject', 'course_year', 'grade', 'school', 'description', 'description_file', 'created_user',)
+                  'subject', 'course_year', 'description', 'description_file', 'created_user',)
         read_only_fields = ('updated_user', 'created_at',
                             'updated_at')
 
