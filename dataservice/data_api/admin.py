@@ -33,11 +33,11 @@ class UserProfileAdmin(CustomModelAdmin):
     search_fields = ('company', 'role')
 
 
-class StudentCourseStructureAdmin(CustomModelAdmin):
+class StudentCourseStructureAdmin(CustomModelAdmin, ImportExportModelAdmin):
     search_fields = ('course_code', 'course_title')
 
 
-class StructurePreferredCourseEnrollAdmin(CustomModelAdmin):
+class StructurePreferredCourseEnrollAdmin(CustomModelAdmin, ImportExportModelAdmin):
     search_fields = ('course_code', 'course_title')
 
 

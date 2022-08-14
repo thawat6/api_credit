@@ -341,7 +341,7 @@ class StructurePreferredCourseEnrollSerializer(serializers.ModelSerializer):
 
 
 class EquivalentCourseSerializer(serializers.ModelSerializer):
-    student_course = StudentCourseStructureSerializer()
+    student_course = StudentCourseStructureSerializer(many=True)
     course_enroll = StructurePreferredCourseEnrollSerializer()
 
     class Meta:

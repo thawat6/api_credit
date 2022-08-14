@@ -188,10 +188,9 @@ class StructurePreferredCourseEnroll(models.Model):
 
 class EquivalentCourse(models.Model):
 
-    student_course = models.ForeignKey(StudentCourseStructure,
-                                       null=True,
-                                       blank=True,
-                                       on_delete=models.SET_NULL)
+    student_course = models.ManyToManyField(StudentCourseStructure,
+                                            blank=True,
+                                            related_name="student_course_transferring_equivalent")
     course_enroll = models.ForeignKey(StructurePreferredCourseEnroll,
                                       null=True,
                                       blank=True,
