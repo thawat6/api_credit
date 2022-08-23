@@ -185,7 +185,7 @@ class TransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
     queryset = TransferringEquivalentCourse.objects.all()
     serializer_class = TransferringEquivalentCourseSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
-    search_fields = ['equivalent_type', 'name_committee1__id',
+    search_fields = ['created_user__id', 'equivalent_type', 'name_committee1__id',
                      'name_committee2__id', 'name_committee3__id', 'name_committee4__id', 'name_committee5__id',
                      'name_committee6__id']
     ordering_fields = ('updated_at')
