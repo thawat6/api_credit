@@ -365,6 +365,10 @@ class TransferringEquivalentCourse(models.Model):
         max_length=50, choices=REGIS_OFFICER_STATE, default='รอตรวจสอบ', null=True)
     registrar_officer_date = models.DateTimeField(null=True,
                                                   blank=True,)
+    is_retry = models.BooleanField(default=False, null=True)
+    is_change_subject = models.BooleanField(default=False, null=True)
+    is_change_school = models.BooleanField(default=False, null=True)
+    is_studied = models.BooleanField(default=False, null=True)
 
     created_user = models.ForeignKey(User,
                                      null=True,

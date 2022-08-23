@@ -324,7 +324,7 @@ class StudentCourseStructureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentCourseStructure
-        fields = ('course_code', 'course_title', 'credit_type', 'credit', 'course',
+        fields = ('id', 'course_code', 'course_title', 'credit_type', 'credit', 'course',
                   'subject', 'course_year', 'grade', 'school', 'description', 'description_file', 'created_user',)
         read_only_fields = ('updated_user', 'created_at',
                             'updated_at')
@@ -334,7 +334,7 @@ class StructurePreferredCourseEnrollSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StructurePreferredCourseEnroll
-        fields = ('course_code', 'course_title', 'credit_type', 'credit', 'course',
+        fields = ('id', 'course_code', 'course_title', 'credit_type', 'credit', 'course',
                   'subject', 'course_year', 'description', 'description_file', 'created_user',)
         read_only_fields = ('updated_user', 'created_at',
                             'updated_at')
@@ -496,7 +496,8 @@ class TransferringEquivalentCourseUpdateSerializer(serializers.ModelSerializer):
                   'deputy_dean_a_r', 'deputy_dean_a_r_comment', 'deputy_dean_a_r_approve', 'deputy_dean_a_r_date',
                   'dean', 'dean_comment', 'dean_approve', 'dean_date',
                   'head_academic_p_r', 'head_academic_p_r_comment', 'head_academic_p_r_date',
-                  'registrar_officer', 'registrar_officer_comment', 'registrar_officer_approve', 'registrar_officer_date')
+                  'registrar_officer', 'registrar_officer_comment', 'registrar_officer_approve', 'registrar_officer_date',
+                  'is_retry', 'is_change_subject', 'is_change_school', 'is_studied')
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
 
@@ -625,6 +626,19 @@ class TransferringEquivalentCourseUpdateSerializer(serializers.ModelSerializer):
         if validated_data.get('registrar_officer_date'):
             instance.registrar_officer_date = validated_data.get(
                 'registrar_officer_date')
+
+        if validated_data.get('is_retry'):
+            instance.is_retry = validated_data.get(
+                'is_retry')
+        if validated_data.get('is_change_subject'):
+            instance.is_change_subject = validated_data.get(
+                'is_change_subject')
+        if validated_data.get('is_change_school'):
+            instance.is_change_school = validated_data.get(
+                'is_change_school')
+        if validated_data.get('is_studied'):
+            instance.is_studied = validated_data.get(
+                'is_studied')
 
         # if validated_data.get('equivalent_item'):
         #     equivalent_item_data = validated_data.get('equivalent_item')
