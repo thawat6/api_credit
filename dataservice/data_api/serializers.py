@@ -341,12 +341,18 @@ class StructurePreferredCourseEnrollSerializer(serializers.ModelSerializer):
 
 
 class EquivalentCourseSerializer(serializers.ModelSerializer):
-    student_course = StudentCourseStructureSerializer(many=True)
+    student_course1 = StudentCourseStructureSerializer()
+    student_course2 = StudentCourseStructureSerializer()
+    student_course3 = StudentCourseStructureSerializer()
+    student_course4 = StudentCourseStructureSerializer()
+    student_course5 = StudentCourseStructureSerializer()
+    student_course6 = StudentCourseStructureSerializer()
     course_enroll = StructurePreferredCourseEnrollSerializer()
 
     class Meta:
         model = EquivalentCourse
-        fields = ('id', 'student_course',
+        fields = ('id', 'student_course1', 'student_course2',
+                  'student_course3', 'student_course4', 'student_course5', 'student_course6',
                   'course_enroll', 'status', 'semester', )
         # exclude = ('created_user','updated_user','created_at','updated_at')
         read_only_fields = ('created_user', 'updated_user', 'created_at',

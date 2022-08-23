@@ -188,9 +188,36 @@ class StructurePreferredCourseEnroll(models.Model):
 
 class EquivalentCourse(models.Model):
 
-    student_course = models.ManyToManyField(StudentCourseStructure,
-                                            blank=True,
-                                            related_name="student_course_transferring_equivalent")
+    student_course1 = models.ForeignKey(StudentCourseStructure,
+                                        related_name='student_course1',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.SET_NULL)
+    student_course2 = models.ForeignKey(StudentCourseStructure,
+                                        related_name='student_course2',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.SET_NULL)
+    student_course3 = models.ForeignKey(StudentCourseStructure,
+                                        related_name='student_course3',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.SET_NULL)
+    student_course4 = models.ForeignKey(StudentCourseStructure,
+                                        related_name='student_course4',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.SET_NULL)
+    student_course5 = models.ForeignKey(StudentCourseStructure,
+                                        related_name='student_course5',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.SET_NULL)
+    student_course6 = models.ForeignKey(StudentCourseStructure,
+                                        related_name='student_course6',
+                                        null=True,
+                                        blank=True,
+                                        on_delete=models.SET_NULL)
     course_enroll = models.ForeignKey(StructurePreferredCourseEnroll,
                                       null=True,
                                       blank=True,
