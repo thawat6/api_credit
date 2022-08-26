@@ -408,12 +408,15 @@ class TransferringEquivalentCourseSerializer(serializers.ModelSerializer):
     dean = UserProfileSerializer()
     head_academic_p_r = UserProfileSerializer()
     registrar_officer = UserProfileSerializer()
+    created_user = UserProfileSerializer()
+    updated_user = UserProfileSerializer()
 
     class Meta:
         model = TransferringEquivalentCourse
-        exclude = ('created_user', 'updated_user',)
-        read_only_fields = ('created_user', 'updated_user',
-                            )
+        fields = '__all__'
+        # exclude = ('created_user', 'updated_user',)
+        # read_only_fields = ('created_user', 'updated_user',
+        #                     )
 
 
 class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
