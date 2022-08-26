@@ -408,8 +408,8 @@ class TransferringEquivalentCourseSerializer(serializers.ModelSerializer):
     dean = UserProfileSerializer()
     head_academic_p_r = UserProfileSerializer()
     registrar_officer = UserProfileSerializer()
-    created_user = UserProfileSerializer()
-    updated_user = UserProfileSerializer()
+    created_user = UserDetailsSerializer()
+    updated_user = UserDetailsSerializer()
 
     class Meta:
         model = TransferringEquivalentCourse
