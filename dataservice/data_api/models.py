@@ -187,6 +187,16 @@ class StructurePreferredCourseEnroll(models.Model):
 
 
 class EquivalentCourse(models.Model):
+    credit1 = models.IntegerField(default=0)
+    credit2 = models.IntegerField(default=0)
+    credit3 = models.IntegerField(default=0)
+    credit4 = models.IntegerField(default=0)
+    credit5 = models.IntegerField(default=0)
+    credit6 = models.IntegerField(default=0)
+    remark = models.TextField(
+        null=True,
+        blank=True,
+    )
 
     student_course1 = models.ForeignKey(StudentCourseStructure,
                                         related_name='student_course1',

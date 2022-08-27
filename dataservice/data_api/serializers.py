@@ -353,7 +353,8 @@ class EquivalentCourseSerializer(serializers.ModelSerializer):
         model = EquivalentCourse
         fields = ('id', 'student_course1', 'student_course2',
                   'student_course3', 'student_course4', 'student_course5', 'student_course6',
-                  'course_enroll', 'status', 'semester', )
+                  'credit1', 'credit2', 'credit3', 'credit4', 'credit5', 'credit6',
+                  'course_enroll', 'status', 'semester', 'remark')
         # exclude = ('created_user','updated_user','created_at','updated_at')
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
