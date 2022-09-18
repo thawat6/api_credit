@@ -60,9 +60,8 @@ class UserProfile(models.Model):
                              blank=True,)
     student_id = models.CharField(max_length=25, null=True,
                                   blank=True,)
-    level_of_study = models.CharField(
-        max_length=50, choices=LEVEL_STUDY_CHOICES, null=True,
-        blank=True,)
+    level_of_study = models.CharField(max_length=250, null=True,
+                                      blank=True,)
 
     profile_image = models.TextField(
         null=True,
