@@ -187,7 +187,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'first_name', 'last_name', 'username',
                   'email', 'role', 'profile_image', 'file_transcrip',
-                  'file_transcrip', 'title', 'student_id', 'level_of_study',
+                  'title', 'student_id', 'level_of_study',
                   'faculty', 'field_of_study', 'class_level')
         write_only_fields = ('password', )
         read_only_fields = (
@@ -227,6 +227,111 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             for item_file_transcrip in user_profile.values('file_transcrip'):
                 file_transcrip = item_file_transcrip
         return file_transcrip
+
+    def get_title(self, obj):
+        title = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_title in user_profile.values('title'):
+                title = item_title
+        return title
+
+    def get_student_id(self, obj):
+        student_id = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_student_id in user_profile.values('student_id'):
+                student_id = item_student_id
+        return student_id
+
+    def get_level_of_study(self, obj):
+        level_of_study = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_level_of_study in user_profile.values('level_of_study'):
+                level_of_study = item_level_of_study
+        return level_of_study
+
+    def get_faculty(self, obj):
+        faculty = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_faculty in user_profile.values('faculty'):
+                faculty = item_faculty
+        return faculty
+
+    def get_field_of_study(self, obj):
+        field_of_study = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_field_of_study in user_profile.values('field_of_study'):
+                field_of_study = item_field_of_study
+        return field_of_study
+
+    def get_class_level(self, obj):
+        class_level = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_class_level in user_profile.values('class_level'):
+                class_level = item_class_level
+        return class_level
+
+
+class UserDetailsSerializerNoFile(serializers.ModelSerializer):
+    role = serializers.SerializerMethodField()
+    profile_image = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
+    student_id = serializers.SerializerMethodField()
+    level_of_study = serializers.SerializerMethodField()
+    faculty = serializers.SerializerMethodField()
+    field_of_study = serializers.SerializerMethodField()
+    class_level = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name', 'username',
+                  'email', 'role', 'profile_image', 'title', 'student_id', 'level_of_study',
+                  'faculty', 'field_of_study', 'class_level')
+        write_only_fields = ('password', )
+        read_only_fields = (
+            'id',
+            'is_staff',
+            'is_superuser',
+            'is_active',
+            'date_joined',
+        )
+
+    def get_role(self, obj):
+        role = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_role in user_profile.values('role'):
+                role = item_role
+        return role
+
+    def get_profile_image(self, obj):
+        profile_image = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_profile_image in user_profile.values('profile_image'):
+                profile_image = item_profile_image
+        return profile_image
 
     def get_title(self, obj):
         title = ""
@@ -411,6 +516,33 @@ class TransferringEquivalentCourseSerializer(serializers.ModelSerializer):
     registrar_officer = UserProfileSerializer()
     created_user = UserDetailsSerializer()
     updated_user = UserDetailsSerializer()
+
+    class Meta:
+        model = TransferringEquivalentCourse
+        fields = '__all__'
+        # exclude = ('created_user', 'updated_user',)
+        # read_only_fields = ('created_user', 'updated_user',
+        #                     )
+
+
+class AllTransferringEquivalentCourseSerializer(serializers.ModelSerializer):
+
+    equivalent_item = EquivalentCourseSerializer(many=True)
+    name_committee1 = UserProfileSerializer()
+    name_committee2 = UserProfileSerializer()
+    name_committee3 = UserProfileSerializer()
+    name_committee4 = UserProfileSerializer()
+    name_committee5 = UserProfileSerializer()
+    name_committee6 = UserProfileSerializer()
+    advisor = UserProfileSerializer()
+    head_department = UserProfileSerializer()
+    head_educational = UserProfileSerializer()
+    deputy_dean_a_r = UserProfileSerializer()
+    dean = UserProfileSerializer()
+    head_academic_p_r = UserProfileSerializer()
+    registrar_officer = UserProfileSerializer()
+    created_user = UserDetailsSerializerNoFile()
+    updated_user = UserDetailsSerializerNoFile()
 
     class Meta:
         model = TransferringEquivalentCourse

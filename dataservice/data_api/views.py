@@ -25,7 +25,7 @@ from rest_framework import routers, serializers, viewsets, generics, status, mix
 from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, TransferringEquivalentCourse
 from data_api.serializers import SetUserPassword, UserSerializer, UserDetailsSerializer, UpdateUserProfileSerializer, \
     StudentCourseStructureSerializer, StructurePreferredCourseEnrollSerializer, TransferringEquivalentCourseSerializer,\
-    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer, ShowUserProfileSerializer
+    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer, ShowUserProfileSerializer, AllTransferringEquivalentCourseSerializer
 fs = FileSystemStorage(location='tmp/')
 
 
@@ -205,3 +205,30 @@ class TransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
         ]:
             return TransferringEquivalentCourseUpdateSerializer
         return TransferringEquivalentCourseSerializer
+
+
+class AllTransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
+
+    queryset = TransferringEquivalentCourse.objects.all()
+    serializer_class = TransferringEquivalentCourseSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    search_fields = ['created_user__id', 'equivalent_type', 'name_committee1__id',
+                     'name_committee2__id', 'name_committee3__id', 'name_committee4__id', 'name_committee5__id',
+                     'name_committee6__id']
+    ordering_fields = ('updated_at')
+    filter_fields = ('created_user', 'equivalent_type', 'name_committee1',
+                     'name_committee2', 'name_committee3', 'name_committee4', 'name_committee5',
+                     'name_committee6', 'advisor', 'head_department', 'head_educational', 'deputy_dean_a_r',
+                     'dean', 'head_academic_p_r', 'registrar_officer',)
+
+    def get_serializer_class(self):
+        if self.request.method in [
+                'POST',
+        ]:
+            return TransferringEquivalentCourseCreateSerializer
+        if self.request.method in [
+                'PUT',
+                'PATCH',
+        ]:
+            return TransferringEquivalentCourseUpdateSerializer
+        return AllTransferringEquivalentCourseSerializer
