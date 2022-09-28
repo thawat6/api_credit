@@ -186,12 +186,18 @@ class StructurePreferredCourseEnroll(models.Model):
 
 
 class EquivalentCourse(models.Model):
-    credit1 = models.IntegerField(default=0)
-    credit2 = models.IntegerField(default=0)
-    credit3 = models.IntegerField(default=0)
-    credit4 = models.IntegerField(default=0)
-    credit5 = models.IntegerField(default=0)
-    credit6 = models.IntegerField(default=0)
+    credit1 = models.CharField(max_length=25, null=True,
+                               blank=True,)
+    credit2 = models.CharField(max_length=25, null=True,
+                               blank=True,)
+    credit3 = models.CharField(max_length=25, null=True,
+                               blank=True,)
+    credit4 = models.CharField(max_length=25, null=True,
+                               blank=True,)
+    credit5 = models.CharField(max_length=25, null=True,
+                               blank=True,)
+    credit6 = models.CharField(max_length=25, null=True,
+                               blank=True,)
     remark = models.TextField(
         null=True,
         blank=True,
