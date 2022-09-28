@@ -112,7 +112,8 @@ class StudentCourseStructure(models.Model):
                                     blank=True,)
     credit_type = models.CharField(
         max_length=20, choices=TYPE_CREDIT_CHOICES, default='ท')
-    credit = models.IntegerField(default=0)
+    credit = models.CharField(max_length=25, null=True,
+                              blank=True,)
     course = models.CharField(max_length=250, null=True,
                               blank=True,)
     subject = models.CharField(max_length=250, null=True,
@@ -152,7 +153,8 @@ class StructurePreferredCourseEnroll(models.Model):
                                     blank=True,)
     credit_type = models.CharField(
         max_length=20, choices=TYPE_CREDIT_CHOICES, default='ท')
-    credit = models.IntegerField(default=0)
+    credit = models.CharField(max_length=25, null=True,
+                              blank=True,)
     course = models.CharField(max_length=250, null=True,
                               blank=True,)
     subject = models.CharField(max_length=250, null=True,
