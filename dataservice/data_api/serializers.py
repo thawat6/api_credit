@@ -182,13 +182,15 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     faculty = serializers.SerializerMethodField()
     field_of_study = serializers.SerializerMethodField()
     class_level = serializers.SerializerMethodField()
+    studied_from = serializers.SerializerMethodField()
+    level_studied = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'username',
                   'email', 'role', 'profile_image', 'file_transcrip',
                   'title', 'student_id', 'level_of_study',
-                  'faculty', 'field_of_study', 'class_level')
+                  'faculty', 'field_of_study', 'class_level', 'studied_from', 'level_studied')
         write_only_fields = ('password', )
         read_only_fields = (
             'id',
@@ -258,6 +260,26 @@ class UserDetailsSerializer(serializers.ModelSerializer):
                 level_of_study = item_level_of_study
         return level_of_study
 
+    def get_studied_from(self, obj):
+        studied_from = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_studied_from in user_profile.values('studied_from'):
+                studied_from = item_studied_from
+        return studied_from
+
+    def get_level_studied(self, obj):
+        level_studied = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_level_studied in user_profile.values('level_studied'):
+                level_studied = item_level_studied
+        return level_studied
+
     def get_faculty(self, obj):
         faculty = ""
         user_profile = UserProfile.objects.filter(
@@ -298,11 +320,14 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
     faculty = serializers.SerializerMethodField()
     field_of_study = serializers.SerializerMethodField()
     class_level = serializers.SerializerMethodField()
+    studied_from = serializers.SerializerMethodField()
+    level_studied = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'username',
                   'email', 'role', 'profile_image', 'title', 'student_id', 'level_of_study',
+                  'studied_from', 'level_studied',
                   'faculty', 'field_of_study', 'class_level')
         write_only_fields = ('password', )
         read_only_fields = (
@@ -363,6 +388,26 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
                 level_of_study = item_level_of_study
         return level_of_study
 
+    def get_studied_from(self, obj):
+        studied_from = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_studied_from in user_profile.values('studied_from'):
+                studied_from = item_studied_from
+        return studied_from
+
+    def get_level_studied(self, obj):
+        level_studied = ""
+        user_profile = UserProfile.objects.filter(
+            id=obj.id)
+
+        if user_profile:
+            for item_level_studied in user_profile.values('level_studied'):
+                level_studied = item_level_studied
+        return level_studied
+
     def get_faculty(self, obj):
         faculty = ""
         user_profile = UserProfile.objects.filter(
@@ -410,7 +455,7 @@ class ShowUserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('id', 'full_name', 'role', 'title', 'student_id', 'level_of_study', 'profile_image',
                   'file_transcrip', 'faculty', 'field_of_study',
-                  'class_level', 'tel')
+                  'class_level', 'tel', 'studied_from', 'level_studied',)
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
 
@@ -420,7 +465,7 @@ class UpdateUserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('role', 'title', 'student_id', 'level_of_study', 'profile_image',
                   'file_transcrip', 'faculty', 'field_of_study',
-                  'class_level', 'tel')
+                  'class_level', 'tel', 'studied_from', 'level_studied',)
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
 
@@ -429,7 +474,7 @@ class StudentCourseStructureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentCourseStructure
-        fields = ('id', 'course_code', 'course_title', 'credit_type', 'credit', 'course',
+        fields = ('id', 'course_code', 'course_title', 'credit_type', 'credit', 'course', 'status',
                   'subject', 'course_year', 'grade', 'school', 'description', 'description_file', 'created_user',)
         read_only_fields = ('updated_user', 'created_at',
                             'updated_at')
@@ -459,7 +504,7 @@ class EquivalentCourseSerializer(serializers.ModelSerializer):
         fields = ('id', 'student_course1', 'student_course2',
                   'student_course3', 'student_course4', 'student_course5', 'student_course6',
                   'credit1', 'credit2', 'credit3', 'credit4', 'credit5', 'credit6',
-                  'course_enroll', 'status', 'semester', 'remark')
+                  'course_enroll', 'status', 'semester', 'remark', 'status')
         # exclude = ('created_user','updated_user','created_at','updated_at')
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
@@ -569,7 +614,7 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
                   'dean',
                   'head_academic_p_r',
                   'registrar_officer',
-                  'created_user',)
+                  'created_user', 'status')
         read_only_fields = ('updated_user', 'created_at',
                             'updated_at')
 
@@ -580,6 +625,7 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
 
         # if request and hasattr(request, "user"):
         #     validated_data['created_user'] = request.user
+        status = validated_data.pop('status')
         created_user = validated_data.pop('created_user')
         name_committee1 = validated_data.pop('name_committee1')
         name_committee2 = validated_data.pop('name_committee2')
@@ -597,6 +643,7 @@ class TransferringEquivalentCourseCreateSerializer(serializers.ModelSerializer):
 
         equivalent_item_data = validated_data.pop('equivalent_item')
 
+        validated_data["status"] = status
         validated_data["created_user"] = created_user
         validated_data["name_committee1"] = name_committee1
         validated_data["name_committee2"] = name_committee2
@@ -639,7 +686,7 @@ class TransferringEquivalentCourseUpdateSerializer(serializers.ModelSerializer):
                   'dean', 'dean_comment', 'dean_approve', 'dean_date',
                   'head_academic_p_r', 'head_academic_p_r_comment', 'head_academic_p_r_date',
                   'registrar_officer', 'registrar_officer_comment', 'registrar_officer_approve', 'registrar_officer_date',
-                  'is_retry', 'is_change_subject', 'is_change_school', 'is_studied')
+                  'is_retry', 'is_change_subject', 'is_change_school', 'is_studied', 'status')
         read_only_fields = ('created_user', 'updated_user', 'created_at',
                             'updated_at')
 
@@ -647,6 +694,8 @@ class TransferringEquivalentCourseUpdateSerializer(serializers.ModelSerializer):
 
         if validated_data.get('equivalent_type'):
             instance.equivalent_type = validated_data.get('equivalent_type')
+        if validated_data.get('status'):
+            instance.status = validated_data.get('status')
         if validated_data.get('studied_from'):
             instance.studied_from = validated_data.get('studied_from')
         if validated_data.get('number_of_equivalent'):

@@ -62,7 +62,12 @@ class UserProfile(models.Model):
                                   blank=True,)
     level_of_study = models.CharField(max_length=250, null=True,
                                       blank=True,)
-
+    studied_from = models.TextField(
+        null=True,
+        blank=True,
+    )
+    level_studied = models.CharField(max_length=250, null=True,
+                                     blank=True,)
     profile_image = models.TextField(
         null=True,
         blank=True,
@@ -106,6 +111,8 @@ TYPE_CREDIT_CHOICES = (
 
 class StudentCourseStructure(models.Model):
 
+    status = models.CharField(max_length=50, null=True,
+                              blank=True,)
     course_code = models.CharField(max_length=25, null=True,
                                    blank=True,)
     course_title = models.CharField(max_length=100, null=True,
@@ -188,6 +195,8 @@ class StructurePreferredCourseEnroll(models.Model):
 
 
 class EquivalentCourse(models.Model):
+    status = models.CharField(
+        max_length=50, choices=STATUS_EQU_COURSE, default='รอตรวจสอบ')
     credit1 = models.CharField(max_length=25, null=True,
                                blank=True,)
     credit2 = models.CharField(max_length=25, null=True,
@@ -239,8 +248,6 @@ class EquivalentCourse(models.Model):
                                       null=True,
                                       blank=True,
                                       on_delete=models.SET_NULL)
-    status = models.CharField(
-        max_length=50, choices=STATUS_EQU_COURSE, default='รอตรวจสอบ')
     semester = models.CharField(max_length=30, null=True,
                                 blank=True,)
     created_user = models.ForeignKey(User,
@@ -260,6 +267,8 @@ class EquivalentCourse(models.Model):
 class TransferringEquivalentCourse(models.Model):
 
     # ประเภท
+    status = models.CharField(max_length=50, null=True,
+                              blank=True,)
     equivalent_type = models.CharField(
         max_length=50, choices=SUBJECT_TASK_CHOICES, default='ขอเทียบโอนรายวิชา')
 
