@@ -22,10 +22,11 @@ from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import routers, serializers, viewsets, generics, status, mixins
-from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, TransferringEquivalentCourse
+from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, CommitteeUser, TransferringEquivalentCourse
 from data_api.serializers import SetUserPassword, UserSerializer, UserDetailsSerializer, UpdateUserProfileSerializer, \
     StudentCourseStructureSerializer, StructurePreferredCourseEnrollSerializer, TransferringEquivalentCourseSerializer,\
-    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer, ShowUserProfileSerializer, AllTransferringEquivalentCourseSerializer
+    TransferringEquivalentCourseCreateSerializer, TransferringEquivalentCourseUpdateSerializer, ShowUserProfileSerializer,\
+    AllTransferringEquivalentCourseSerializer, CommitteeUserSerializer, CommitteeUserCreateSerializer
 fs = FileSystemStorage(location='tmp/')
 
 
@@ -232,3 +233,15 @@ class AllTransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
         ]:
             return TransferringEquivalentCourseUpdateSerializer
         return AllTransferringEquivalentCourseSerializer
+
+
+class CommitteeUserSerializerViewSet(viewsets.ModelViewSet):
+
+    queryset = CommitteeUser.objects.all()
+    serializer_class = CommitteeUserSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+
+    def get_serializer_class(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH']:
+            return CommitteeUserCreateSerializer
+        return CommitteeUserSerializer

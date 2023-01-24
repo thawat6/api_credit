@@ -2,11 +2,13 @@ from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from data_api.views import UserViewSet, set_user_password, UserProfileViewSet, StudentCourseStructureViewset,\
-    StructurePreferredCourseEnrollViewset, TransferringEquivalentCourseViewSet, AllTransferringEquivalentCourseViewSet
+    StructurePreferredCourseEnrollViewset, TransferringEquivalentCourseViewSet, AllTransferringEquivalentCourseViewSet,\
+    CommitteeUserSerializerViewSet
 router = DefaultRouter()
 
 router.register(r'users', UserViewSet, 'user')
 router.register(r'profile', UserProfileViewSet, 'profile')
+router.register(r'committee', CommitteeUserSerializerViewSet, 'committee')
 router.register(r'my-course', StudentCourseStructureViewset, 'my-course')
 router.register(r'school-course',
                 StructurePreferredCourseEnrollViewset, 'school-course')

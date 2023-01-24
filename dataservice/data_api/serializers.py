@@ -1,5 +1,5 @@
 from rest_framework import routers, serializers
-from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, EquivalentCourse, TransferringEquivalentCourse
+from data_api.models import UserProfile, StudentCourseStructure, StructurePreferredCourseEnroll, EquivalentCourse, CommitteeUser, TransferringEquivalentCourse
 from django.contrib.auth.models import User, Group
 from rest_framework.authtoken.models import Token
 from drf_extra_fields.fields import Base64ImageField
@@ -541,6 +541,25 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'is_active',
             'date_joined',
         )
+
+
+class CommitteeUserSerializer(serializers.ModelSerializer):
+    name_committee1 = UserProfileSerializer()
+    name_committee2 = UserProfileSerializer()
+    name_committee3 = UserProfileSerializer()
+    name_committee4 = UserProfileSerializer()
+    name_committee5 = UserProfileSerializer()
+    name_committee6 = UserProfileSerializer()
+
+    class Meta:
+        model = CommitteeUser
+        fields = '__all__'
+
+
+class CommitteeUserCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommitteeUser
+        fields = '__all__'
 
 
 class TransferringEquivalentCourseSerializer(serializers.ModelSerializer):

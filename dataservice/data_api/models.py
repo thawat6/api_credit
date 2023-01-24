@@ -264,6 +264,39 @@ class EquivalentCourse(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class CommitteeUser(models.Model):
+    name_committee1 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee1",
+                                        on_delete=models.SET_NULL)
+    name_committee2 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee2",
+                                        on_delete=models.SET_NULL)
+    name_committee3 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee3",
+                                        on_delete=models.SET_NULL)
+    name_committee4 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee4",
+                                        on_delete=models.SET_NULL)
+    name_committee5 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee5",
+                                        on_delete=models.SET_NULL)
+    name_committee6 = models.ForeignKey(User,
+                                        null=True,
+                                        blank=True,
+                                        related_name="committee6",
+                                        on_delete=models.SET_NULL)
+
+
 class TransferringEquivalentCourse(models.Model):
 
     # ประเภท
@@ -415,7 +448,7 @@ class TransferringEquivalentCourse(models.Model):
         blank=True,
     )
     registrar_officer_approve = models.CharField(
-        max_length=50, choices=REGIS_OFFICER_STATE, default='รอตรวจสอบ', null=True)
+        max_length=100, default='รอตรวจสอบ', null=True)
     registrar_officer_date = models.DateTimeField(null=True,
                                                   blank=True,)
     is_retry = models.BooleanField(default=False, null=True)
