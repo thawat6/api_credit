@@ -196,7 +196,7 @@ class StructurePreferredCourseEnroll(models.Model):
 
 class EquivalentCourse(models.Model):
     status = models.CharField(
-        max_length=50, choices=STATUS_EQU_COURSE, default='รอตรวจสอบ')
+        max_length=100,  default='รอตรวจสอบ')
     credit1 = models.CharField(max_length=25, null=True,
                                blank=True,)
     credit2 = models.CharField(max_length=25, null=True,
