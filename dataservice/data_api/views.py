@@ -86,7 +86,7 @@ class StudentCourseStructureViewset(viewsets.ModelViewSet):
     queryset = StudentCourseStructure.objects.all()
     serializer_class = StudentCourseStructureSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
-    filter_fields = ('created_user',)
+    filter_fields = ('created_user', 'status',)
     search_fields = ('course_code',
                      'course_title',
                      'course',
