@@ -220,7 +220,7 @@ class AllTransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
     filter_fields = ('created_user', 'equivalent_type', 'name_committee1',
                      'name_committee2', 'name_committee3', 'name_committee4', 'name_committee5',
                      'name_committee6', 'advisor', 'head_department', 'head_educational', 'deputy_dean_a_r',
-                     'dean', 'head_academic_p_r', 'registrar_officer',)
+                     'dean', 'head_academic_p_r', 'registrar_officer', 'status',)
 
     def get_serializer_class(self):
         if self.request.method in [
