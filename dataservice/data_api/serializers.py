@@ -403,11 +403,11 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_title(self, obj):
         title = ""
-        user_profile = UserProfile.objects.filter(user=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id).first()
 
         if user_profile:
-            for item_title in user_profile.values("title"):
-                title = item_title
+            # for item_title in user_profile.values("title"):
+            title = user_profile.title
         return title
 
     def get_student_id(self, obj):
