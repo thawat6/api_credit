@@ -6,6 +6,7 @@ from data_api.models import (
     EquivalentCourse,
     CommitteeUser,
     TransferringEquivalentCourse,
+    TitleProfile,
 )
 from django.contrib.auth.models import User, Group
 from rest_framework.authtoken.models import Token
@@ -47,7 +48,7 @@ class UserSerializer(serializers.ModelSerializer):
     group = serializers.CharField(read_only=True)
     # profile_image = serializers.CharField(write_only=True)
     # file_transcrip = serializers.CharField(write_only=True)
-    # title = serializers.CharField(write_only=True)
+    title = serializers.CharField(write_only=True)
     # student_id = serializers.CharField(write_only=True)
     # level_of_study = serializers.CharField(write_only=True)
     # faculty = serializers.CharField(write_only=True)
@@ -66,6 +67,7 @@ class UserSerializer(serializers.ModelSerializer):
             "email",
             "role",
             "group",
+            "title",
         )
         write_only_fields = ("password",)
         read_only_fields = (
@@ -81,7 +83,7 @@ class UserSerializer(serializers.ModelSerializer):
         role = validated_data.pop("role")
         # profile_image = validated_data.pop('profile_image')
         # file_transcrip = validated_data.pop('file_transcrip')
-        # title = validated_data.pop('title')
+        title = validated_data.pop("title")
         # student_id = validated_data.pop('student_id')
         # level_of_study = validated_data.pop('level_of_study')
         # faculty = validated_data.pop('faculty')
@@ -90,10 +92,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create(**validated_data)
         user.set_password(validated_data["password"])
         user.save()
-        user_profile = UserProfile.objects.create(
-            user=user,
-            role=role,
-        )
+        user_profile = UserProfile.objects.create(user=user, role=role, title=title)
         return user
 
     def update(self, instance, validated_data):
@@ -185,6 +184,12 @@ class AuthUserSortDetailSerializer(serializers.ModelSerializer):
         )
 
 
+class TitleProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TitleProfile
+        fields = "__all__"
+
+
 class UserDetailsSerializer(serializers.ModelSerializer):
     role = serializers.SerializerMethodField()
     profile_image = serializers.SerializerMethodField()
@@ -229,7 +234,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_role(self, obj):
         role = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_role in user_profile.values("role"):
@@ -238,7 +243,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_profile_image(self, obj):
         profile_image = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_profile_image in user_profile.values("profile_image"):
@@ -247,7 +252,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_file_transcrip(self, obj):
         file_transcrip = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_file_transcrip in user_profile.values("file_transcrip"):
@@ -256,16 +261,16 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_title(self, obj):
         title = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id).first()
 
         if user_profile:
-            for item_title in user_profile.values("title"):
-                title = item_title
+            # for item_title in user_profile.values("title"):
+            title = user_profile.title
         return title
 
     def get_student_id(self, obj):
         student_id = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_student_id in user_profile.values("student_id"):
@@ -274,7 +279,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_level_of_study(self, obj):
         level_of_study = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_level_of_study in user_profile.values("level_of_study"):
@@ -283,7 +288,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_studied_from(self, obj):
         studied_from = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_studied_from in user_profile.values("studied_from"):
@@ -292,7 +297,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_level_studied(self, obj):
         level_studied = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_level_studied in user_profile.values("level_studied"):
@@ -301,7 +306,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_faculty(self, obj):
         faculty = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_faculty in user_profile.values("faculty"):
@@ -310,7 +315,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_field_of_study(self, obj):
         field_of_study = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_field_of_study in user_profile.values("field_of_study"):
@@ -319,7 +324,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_class_level(self, obj):
         class_level = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_class_level in user_profile.values("class_level"):
@@ -338,11 +343,13 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
     class_level = serializers.SerializerMethodField()
     studied_from = serializers.SerializerMethodField()
     level_studied = serializers.SerializerMethodField()
+    full_name = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             "id",
+            "full_name",
             "first_name",
             "last_name",
             "username",
@@ -369,16 +376,25 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_role(self, obj):
         role = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
-            for item_role in user_profile.values("role"):
-                role = item_role
+            for full_name in user_profile.values("role"):
+                role = full_name
         return role
+
+    def get_full_name(self, obj):
+        full_name = ""
+        user_profile = UserProfile.objects.filter(user=obj.id)
+
+        if user_profile:
+            for item_role in user_profile.values("full_name"):
+                full_name = item_role
+        return full_name
 
     def get_profile_image(self, obj):
         profile_image = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_profile_image in user_profile.values("profile_image"):
@@ -387,7 +403,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_title(self, obj):
         title = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_title in user_profile.values("title"):
@@ -396,7 +412,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_student_id(self, obj):
         student_id = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_student_id in user_profile.values("student_id"):
@@ -405,7 +421,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_level_of_study(self, obj):
         level_of_study = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_level_of_study in user_profile.values("level_of_study"):
@@ -414,7 +430,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_studied_from(self, obj):
         studied_from = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_studied_from in user_profile.values("studied_from"):
@@ -423,7 +439,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_level_studied(self, obj):
         level_studied = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_level_studied in user_profile.values("level_studied"):
@@ -432,7 +448,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_faculty(self, obj):
         faculty = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_faculty in user_profile.values("faculty"):
@@ -441,7 +457,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_field_of_study(self, obj):
         field_of_study = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_field_of_study in user_profile.values("field_of_study"):
@@ -450,7 +466,7 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_class_level(self, obj):
         class_level = ""
-        user_profile = UserProfile.objects.filter(id=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id)
 
         if user_profile:
             for item_class_level in user_profile.values("class_level"):
