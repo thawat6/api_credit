@@ -207,6 +207,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             "id",
+            "full_name",
             "first_name",
             "last_name",
             "username",
@@ -249,6 +250,15 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             for item_profile_image in user_profile.values("profile_image"):
                 profile_image = item_profile_image
         return profile_image
+
+    def get_full_name(self, obj):
+        full_name = ""
+        user_profile = UserProfile.objects.filter(user=obj.id).first()
+
+        if user_profile:
+            # for item_role in user_profile.values("full_name"):
+            full_name = user_profile.full_name
+        return full_name
 
     def get_file_transcrip(self, obj):
         file_transcrip = ""
@@ -385,11 +395,11 @@ class UserDetailsSerializerNoFile(serializers.ModelSerializer):
 
     def get_full_name(self, obj):
         full_name = ""
-        user_profile = UserProfile.objects.filter(user=obj.id)
+        user_profile = UserProfile.objects.filter(user=obj.id).first()
 
         if user_profile:
-            for item_role in user_profile.values("full_name"):
-                full_name = item_role
+            # for item_role in user_profile.values("full_name"):
+            full_name = user_profile.full_name
         return full_name
 
     def get_profile_image(self, obj):
