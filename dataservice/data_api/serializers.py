@@ -202,6 +202,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     class_level = serializers.SerializerMethodField()
     studied_from = serializers.SerializerMethodField()
     level_studied = serializers.SerializerMethodField()
+    full_name = serializers.SerializerMethodField()
 
     class Meta:
         model = User
