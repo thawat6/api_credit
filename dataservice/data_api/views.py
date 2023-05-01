@@ -109,6 +109,8 @@ class StudentCourseStructureViewset(viewsets.ModelViewSet):
     queryset = StudentCourseStructure.objects.all()
     serializer_class = StudentCourseStructureSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    ordering_fields = "id"
+    ordering = "-id"
     filter_fields = (
         "created_user",
         "status",
@@ -125,6 +127,8 @@ class StructurePreferredCourseEnrollViewset(viewsets.ModelViewSet):
     queryset = StructurePreferredCourseEnroll.objects.all()
     serializer_class = StructurePreferredCourseEnrollSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    ordering_fields = "id"
+    ordering = "-id"
     filter_fields = ("created_user",)
     search_fields = (
         "course_code",
@@ -268,6 +272,7 @@ class AllTransferringEquivalentCourseViewSet(viewsets.ModelViewSet):
         "name_committee6__id",
     ]
     ordering_fields = "updated_at"
+    ordering = "-updated_at"
     filter_fields = (
         "created_user",
         "equivalent_type",
