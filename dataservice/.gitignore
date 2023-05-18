@@ -2,4 +2,4 @@ env
 *.pyc
 dataservice/.coverage
 dataservice/coverage-report/
-migrations
+

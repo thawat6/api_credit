@@ -1,0 +1,432 @@
+[
+{
+  "model": "data_api.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "serviceadmin"
+    ],
+    "full_name": null,
+    "role": "service_admin",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "ordermanager"
+    ],
+    "full_name": null,
+    "role": "student",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "backofficer"
+    ],
+    "full_name": null,
+    "role": "teacher",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "saleperson"
+    ],
+    "full_name": null,
+    "role": "judge",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "tripmanager"
+    ],
+    "full_name": null,
+    "role": "admin",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "full_name": null,
+    "role": "service_admin",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.userprofile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "teacher1"
+    ],
+    "full_name": null,
+    "role": "teacher",
+    "title": null,
+    "student_id": null,
+    "level_of_study": null,
+    "studied_from": null,
+    "level_studied": null,
+    "profile_image": null,
+    "file_transcrip": null,
+    "faculty": null,
+    "field_of_study": null,
+    "class_level": null,
+    "tel": null
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 1,
+  "fields": {
+    "course_code": "02-011-109",
+    "course_title": "แคลคูลัส 1 สำหรับวิศวกร",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 2,
+  "fields": {
+    "course_code": "02-011-110",
+    "course_title": "แคลคูลัส 2 สำหรับวิศวกร",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 3,
+  "fields": {
+    "course_code": "02-030-101",
+    "course_title": "ฟิสิกส์ 1",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 4,
+  "fields": {
+    "course_code": "02-030-102",
+    "course_title": "ปฏิบัติการฟิสิกส์ 1",
+    "credit_type": "ป",
+    "credit": "1",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 5,
+  "fields": {
+    "course_code": "04-020-202",
+    "course_title": "วงจรไฟฟ้า 1",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 6,
+  "fields": {
+    "course_code": "04-100-101",
+    "course_title": "วัสดุวิศวกรรม",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 7,
+  "fields": {
+    "course_code": "04-061-211",
+    "course_title": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "credit_type": "ท",
+    "credit": "2",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 8,
+  "fields": {
+    "course_code": "04-061-212",
+    "course_title": "ปฏิบัติการโครงสร้างข้อมูลและอัลกอริทึม",
+    "credit_type": "ป",
+    "credit": "1",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 9,
+  "fields": {
+    "course_code": "04-036-201",
+    "course_title": "กลศาสตร์วิศวกรรม",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 10,
+  "fields": {
+    "course_code": "04-040-101",
+    "course_title": "การฝึกพื้นฐานทางวิศวกรรม",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 11,
+  "fields": {
+    "course_code": "04-040-102",
+    "course_title": "เขียนแบบวิศวกรรม",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+},
+{
+  "model": "data_api.structurepreferredcourseenroll",
+  "pk": 12,
+  "fields": {
+    "course_code": "04-060-101",
+    "course_title": "การโปรแกรมคอมพิวเตอร์",
+    "credit_type": "ท",
+    "credit": "3",
+    "course": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+    "subject": "วิศวกรรมคอมพิวเตอร์",
+    "course_year": "2558",
+    "description_file": "",
+    "description": "",
+    "created_user": [
+      "admin"
+    ],
+    "updated_user": [
+      "admin"
+    ],
+    "created_at": "2022-03-01T06:41:07.643Z",
+    "updated_at": "2022-03-01T06:41:07.643Z"
+  }
+}
+]
